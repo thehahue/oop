@@ -1,0 +1,12 @@
+<mxfile host="app.diagrams.net" modified="2026-08-07T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="uebung01" name="Übung 1 – Datenkapselung">
+    <mxGraphModel dx="900" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0"><root>
+      <mxCell id="0"/><mxCell id="1" parent="0"/>
+      <mxCell id="title" value="Übung 1 – Datenkapselung" style="text;html=1;align=center;fontSize=22;fontStyle=1" vertex="1" parent="1"><mxGeometry x="260" y="30" width="380" height="40" as="geometry"/></mxCell>
+      <mxCell id="schueler" value="&lt;b&gt;Schueler&lt;/b&gt;&lt;hr&gt;- name: String&lt;br&gt;- alter: int&lt;hr&gt;+ Schueler(name: String, alter: int)&lt;br&gt;+ getName(): String&lt;br&gt;+ setName(name: String): void&lt;br&gt;+ getAlter(): int&lt;br&gt;+ setAlter(alter: int): void&lt;br&gt;+ vorstellen(): void" style="rounded=0;verticalAlign=top;spacingTop=8;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;spacingLeft=8;whiteSpace=wrap" vertex="1" parent="1"><mxGeometry x="320" y="130" width="330" height="250" as="geometry"/></mxCell>
+      <mxCell id="app" value="&lt;b&gt;Uebung01&lt;/b&gt;&lt;hr&gt;+ main(args: String[]): void" style="rounded=0;verticalAlign=top;spacingTop=8;html=1;strokeWidth=2;fillColor=#f5f5f5;strokeColor=#666666;align=left;spacingLeft=8;whiteSpace=wrap" vertex="1" parent="1"><mxGeometry x="40" y="190" width="220" height="100" as="geometry"/></mxCell>
+      <mxCell id="uses" value="erzeugt und verwendet" style="edgeStyle=orthogonalEdgeStyle;html=1;dashed=1;endArrow=open;endFill=0" edge="1" parent="1" source="app" target="schueler"><mxGeometry relative="1" as="geometry"/></mxCell>
+      <mxCell id="note" value="- privat&#xa;+ öffentlich" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;spacingLeft=8" vertex="1" parent="1"><mxGeometry x="700" y="175" width="140" height="80" as="geometry"/></mxCell>
+    </root></mxGraphModel>
+  </diagram>
+</mxfile>
