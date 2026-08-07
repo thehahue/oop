@@ -5,15 +5,15 @@ public class Schueler {
     private int alter;
 
     public Schueler(String name, int alter) {
-        this.name = name;
-        this.alter = alter;
+        setName(name);
+        setAlter(alter);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Der Name darf nicht leer sein.");
         }
@@ -24,7 +24,7 @@ public class Schueler {
         return alter;
     }
 
-    public void setAlter(int alter) {
+    private void setAlter(int alter) {
         if (alter < 5 || alter > 100) {
             throw new IllegalArgumentException("Das Alter muss zwischen 5 und 100 liegen.");
         }

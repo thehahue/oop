@@ -2,11 +2,14 @@ package at.bbrz.oop.uebung01_datenkapselung;
 
 public class Uebung01 {
     public static void main(String[] args) {
-        Schueler schueler = new Schueler("Mia", 15);
-        schueler.vorstellen();
-        schueler.setAlter(16);
-        System.out.println("Neues Alter: " + schueler.getAlter());
+        Schueler mia = new Schueler("Mia", 15);
+        mia.vorstellen();
+        //mia.setAlter(16);
+        System.out.println("Alter: " + mia.getAlter());
 
-        // Probiere aus: Warum ist schueler.alter = -3; nicht erlaubt?
+        Schueler franz = new Schueler("Franz", 18);
+        franz.vorstellen();
+
+        // Probiere aus: Warum ist mia.alter = -3; nicht erlaubt?
     }
 }
