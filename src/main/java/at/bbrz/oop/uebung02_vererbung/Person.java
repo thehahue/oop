@@ -15,6 +15,6 @@ public class Person {
     }
 
     public void vorstellen() {
-        System.out.println("Ich heisse " + name + ".");
+        System.out.println("Ich heisse " + name + "!");
     }
 }
