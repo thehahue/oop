@@ -15,4 +15,9 @@ public class Schueler extends Person {
     public void lernen() {
         System.out.println(getName() + " lernt fuer die Klasse " + klasse + ".");
     }
+
+    @Override
+    public void vorstellen() {
+        System.out.println("Ich bin der Schüler/die Schülerin " + getName() + "!");
+    }
 }
