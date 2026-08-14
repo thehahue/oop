@@ -7,7 +7,8 @@ public class Uebung04 {
         List<Schulleistung> leistungen = List.of(
                 new Klassenarbeit("Sara", 2.0, "Deutsch"),
                 new Referat("Elias", 4.5, "Vulkane"),
-                new Klassenarbeit("Amir", 1.5, "Mathematik")
+                new Klassenarbeit("Amir", 1.5, "Mathematik"),
+                new GruppenProjekt("Fritzi, Karli", 2.0, "Programmieren")
         );
 
         for (Schulleistung leistung : leistungen) {
