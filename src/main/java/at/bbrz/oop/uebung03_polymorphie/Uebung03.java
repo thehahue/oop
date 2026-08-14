@@ -5,7 +5,8 @@ public class Uebung03 {
         Schulmitglied[] mitglieder = {
                 new Schueler("Lina"),
                 new Lehrkraft("Herr Yilmaz"),
-                new Hausmeister("Herr Kurz")
+                new Hausmeister("Herr Kurz"),
+                new Direktor("Frau Lutz")
         };
 
         // Polymorphie -> Late Binding
