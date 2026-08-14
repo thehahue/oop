@@ -12,4 +12,9 @@ public class Klassenarbeit extends Schulleistung {
     public String getArt() {
         return "Klassenarbeit in " + fach;
     }
+
+    @Override
+    public boolean geheim() {
+        return false;
+    }
 }

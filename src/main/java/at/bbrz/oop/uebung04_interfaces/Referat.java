@@ -12,4 +12,9 @@ public class Referat extends Schulleistung {
     public String getArt() {
         return "Referat ueber " + thema;
     }
+
+    @Override
+    public boolean geheim() {
+        return true;
+    }
 }

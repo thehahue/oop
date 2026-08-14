@@ -1,6 +1,6 @@
 package at.bbrz.oop.uebung04_interfaces;
 
-public abstract class Schulleistung implements Benotbar {
+public abstract class Schulleistung implements Benotbar, Geheim {
     private final String schuelerName;
     private double note;
 
