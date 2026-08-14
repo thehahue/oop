@@ -7,6 +7,6 @@ public class Hausmeister extends Schulmitglied {
 
     @Override
     public String gibTaetigkeit() {
-        return getName() + " kuemmert sich um das Schulgebaeude";
+        return "kuemmert sich um das Schulgebaeude";
     }
 }

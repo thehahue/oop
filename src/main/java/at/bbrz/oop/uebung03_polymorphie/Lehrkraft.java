@@ -7,6 +7,6 @@ public class Lehrkraft extends Schulmitglied {
 
     @Override
     public String gibTaetigkeit() {
-        return getName() + " unterrichtet und korrigiert Aufgaben.";
+        return "unterrichtet und korrigiert Aufgaben.";
     }
 }
