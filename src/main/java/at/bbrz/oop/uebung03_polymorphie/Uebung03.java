@@ -15,7 +15,7 @@ public class Uebung03 {
         }
 
         // Polymorphie -> Early Binding
-        //                Die Methode wird zur Compilezeit bestimme, die aufgerufen wird (Schuler.gibTaetigkeit())
+        //                Die Methode wird zur Compilezeit bestimmt, die aufgerufen wird (Schuler.gibTaetigkeit())
         Schueler heidi = new Schueler("Heidi");
         heidi.beschreiben();
         // TODO: Fuege eine Direktor-Klasse hinzu. Die Schleife darf unveraendert bleiben.
