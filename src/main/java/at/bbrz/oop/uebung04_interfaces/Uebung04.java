@@ -13,8 +13,13 @@ public class Uebung04 {
         for (Schulleistung leistung : leistungen) {
             String ergebnis = leistung.istBestanden() ? "bestanden" : "nicht bestanden";
 
-            System.out.printf("%s: %s, Note %.1f (%s)%n",
-                    leistung.getSchuelerName(), leistung.getArt(), leistung.getNote(), ergebnis);
+            if (!leistung.geheim()) {
+                System.out.printf("%s: %s, Note %.1f (%s)%n",
+                        leistung.getSchuelerName(), leistung.getArt(), leistung.getNote(), ergebnis);
+            } else {
+                System.out.printf("%s: %s, <Geheim>%n",
+                        leistung.getSchuelerName(), leistung.getArt());
+            }
         }
 
         // TODO: Implementiere die Unterklasse Gruppenprojekt mit einem Projekttitel.
