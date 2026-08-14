@@ -6,7 +6,8 @@ public class Uebung03 {
                 new Schueler("Lina"),
                 new Lehrkraft("Herr Yilmaz"),
                 new Hausmeister("Herr Kurz"),
-                new Direktor("Frau Lutz")
+                new Direktor("Frau Lutz"),
+                new SchuelerVertreter("Karl"),
         };
 
         // Polymorphie -> Late Binding

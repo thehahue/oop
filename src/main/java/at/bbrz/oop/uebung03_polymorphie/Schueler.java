@@ -7,6 +7,6 @@ public class Schueler extends Schulmitglied {
 
     @Override
     public String gibTaetigkeit() {
-        return "lernt und erledigt Hausaufgaben";
+        return "lernt und erledigt Hausaufgaben.";
     }
 }
