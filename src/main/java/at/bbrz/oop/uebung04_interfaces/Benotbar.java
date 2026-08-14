@@ -4,6 +4,6 @@ public interface Benotbar {
     double getNote();
 
     default boolean istBestanden() {
-        return getNote() <= 4.0;
+        return getNote() < 4.0;
     }
 }

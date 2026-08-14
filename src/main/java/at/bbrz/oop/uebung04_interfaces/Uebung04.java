@@ -12,6 +12,7 @@ public class Uebung04 {
 
         for (Schulleistung leistung : leistungen) {
             String ergebnis = leistung.istBestanden() ? "bestanden" : "nicht bestanden";
+
             System.out.printf("%s: %s, Note %.1f (%s)%n",
                     leistung.getSchuelerName(), leistung.getArt(), leistung.getNote(), ergebnis);
         }
