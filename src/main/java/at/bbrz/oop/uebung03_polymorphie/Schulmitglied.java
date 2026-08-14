@@ -25,6 +25,6 @@ public abstract class Schulmitglied {
     public abstract String gibTaetigkeit();
 
     public void beschreiben() {
-        System.out.println(name + " " + gibTaetigkeit());
+        System.out.println("Personen Nummer:" + personenNummer + ", " + name + " " + gibTaetigkeit());
     }
 }
