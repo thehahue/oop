@@ -9,19 +9,15 @@ public class Schueler {
         setAlter(alter);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    private void setName(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Der Name darf nicht leer sein.");
-        }
-        this.name = name;
+    public void vorstellen() {
+        System.out.printf("Hallo, ich bin %s und %d Jahre alt.%n", name, alter);
     }
 
     public int getAlter() {
         return alter;
+    }
+    public String getName() {
+        return name;
     }
 
     private void setAlter(int alter) {
@@ -30,9 +26,11 @@ public class Schueler {
         }
         this.alter = alter;
     }
-
-    public void vorstellen() {
-        System.out.printf("Hallo, ich bin %s und %d Jahre alt.%n", name, alter);
+    private void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Der Name darf nicht leer sein.");
+        }
+        this.name = name;
     }
 
     // TODO: Fuege das private Feld klasse samt Getter und geprueftem Setter hinzu.
