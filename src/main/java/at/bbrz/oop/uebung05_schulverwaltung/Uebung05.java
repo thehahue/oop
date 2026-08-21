@@ -2,18 +2,14 @@ package at.bbrz.oop.uebung05_schulverwaltung;
 
 public class Uebung05 {
     public static void main(String[] args) {
-        Schule schule = new Schule("BBRZ-Schule");
-        Lehrkraft lehrkraft = new Lehrkraft(1, "Frau Novak", "Programmieren");
+        Schule schule = SchulFabric.createSchule("BBRZ Schule","Franz Hofer");
+        Lehrkraft lehrkraft = new Lehrkraft(9, "Frau Novak", "Programmieren");
         Schueler mia = new Schueler(2, "Mia", "JAVA-1");
         Schueler leon = new Schueler(3, "Leon", "JAVA-1");
         Schueler mitGleicherID = new Schueler(3, "Franz", "JAVA-1");
         Schueler mitGleichemNamen = new Schueler(4, "Mia", "JAVA-1");
-        Direktor franz = new Direktor(5, "Franz Hofer", schule);
 
-        Schule schule2 = new Schule("BBRZ-Schule2");
-        Direktor biber = new Direktor(1, "Mia Biber");
-        schule2.direktorAufnehmen(biber);
-
+        Schule schule2 = SchulFabric.createSchule("BBRZ Schule 2", "Mia Biber");
         schule2.personenAusgeben();
 
         schule.personAufnehmen(lehrkraft);
@@ -22,7 +18,6 @@ public class Uebung05 {
         //schule.personAufnehmen(mitGleicherID); -> hier wird eine Exception geworfen und das Programm stürzt ab
         //schule.personAufnehmen(mitGleichemNamen);
         //schule.personAufnehmen(null);
-        schule.personAufnehmen(franz);
 
         schule.personenAusgeben();
 
