@@ -27,6 +27,15 @@ public class Kurs {
         teilnehmende.add(schueler);
     }
 
+    public void abmelden(int suchId) {
+        for (Schueler schueler : teilnehmende) {
+            if (schueler.getId() == suchId) {
+                teilnehmende.remove(schueler);
+                return;
+            }
+        }
+    }
+
     public List<Schueler> getTeilnehmende() {
         return Collections.unmodifiableList(teilnehmende);
     }

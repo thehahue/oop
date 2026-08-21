@@ -26,6 +26,9 @@ public class Uebung05 {
         javaKurs.anmelden(leon);
         javaKurs.ausgeben();
 
+        javaKurs.abmelden(2);
+        javaKurs.ausgeben();
+
         Schulperson gefunden = schule.findePerson(3);
         System.out.println("Gefunden: " + gefunden.getBeschreibung());
 
