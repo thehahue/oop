@@ -12,6 +12,10 @@ public class Schule {
     }
 
     public void personAufnehmen(Schulperson person) {
+        if (isIdInPersonList(person.getId())) {
+            throw new RuntimeException("Schulperson ID ist bereits vergeben");
+        }
+
         if (person != null) {
             personen.add(person);
         }
@@ -31,5 +35,15 @@ public class Schule {
         for (Schulperson person : personen) {
             System.out.println("  " + person.getBeschreibung());
         }
+    }
+
+    private boolean isIdInPersonList(int searchId) {
+        for (Schulperson person : personen) {
+            if (person.getId() == searchId) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
