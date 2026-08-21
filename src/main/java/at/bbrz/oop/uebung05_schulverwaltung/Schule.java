@@ -27,6 +27,16 @@ public class Schule {
         personen.add(person);
     }
 
+    public void direktorAufnehmen(Direktor direktor) {
+        if (direktor == null) {
+            return;
+        }
+
+        direktor.setSchule(this);
+
+        personAufnehmen(direktor);
+    }
+
     public Schulperson findePerson(int id) {
         for (Schulperson person : personen) {
             if (person.getId() == id) {
@@ -61,5 +71,9 @@ public class Schule {
         }
 
         return false;
+    }
+
+    public String getName() {
+        return name;
     }
 }

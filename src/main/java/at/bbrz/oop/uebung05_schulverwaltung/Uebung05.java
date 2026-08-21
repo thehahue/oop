@@ -8,13 +8,21 @@ public class Uebung05 {
         Schueler leon = new Schueler(3, "Leon", "JAVA-1");
         Schueler mitGleicherID = new Schueler(3, "Franz", "JAVA-1");
         Schueler mitGleichemNamen = new Schueler(4, "Mia", "JAVA-1");
+        Direktor franz = new Direktor(5, "Franz Hofer", schule);
+
+        Schule schule2 = new Schule("BBRZ-Schule2");
+        Direktor biber = new Direktor(1, "Mia Biber");
+        schule2.direktorAufnehmen(biber);
+
+        schule2.personenAusgeben();
 
         schule.personAufnehmen(lehrkraft);
         schule.personAufnehmen(mia);
         schule.personAufnehmen(leon);
         //schule.personAufnehmen(mitGleicherID); -> hier wird eine Exception geworfen und das Programm stürzt ab
-        schule.personAufnehmen(mitGleichemNamen);
+        //schule.personAufnehmen(mitGleichemNamen);
         //schule.personAufnehmen(null);
+        schule.personAufnehmen(franz);
 
         schule.personenAusgeben();
 
