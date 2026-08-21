@@ -6,12 +6,15 @@ public class Uebung05 {
         Lehrkraft lehrkraft = new Lehrkraft(1, "Frau Novak", "Programmieren");
         Schueler mia = new Schueler(2, "Mia", "JAVA-1");
         Schueler leon = new Schueler(3, "Leon", "JAVA-1");
-        Schueler leonMitGleicherID = new Schueler(3, "Leon", "JAVA-1");
+        Schueler mitGleicherID = new Schueler(3, "Franz", "JAVA-1");
+        Schueler mitGleichemNamen = new Schueler(4, "Mia", "JAVA-1");
 
         schule.personAufnehmen(lehrkraft);
         schule.personAufnehmen(mia);
         schule.personAufnehmen(leon);
-        //schule.personAufnehmen(leonMitGleicherID); -> hier wird eine Exception geworfen und das Programm stürzt ab
+        //schule.personAufnehmen(mitGleicherID); -> hier wird eine Exception geworfen und das Programm stürzt ab
+        schule.personAufnehmen(mitGleichemNamen);
+        //schule.personAufnehmen(null);
 
         schule.personenAusgeben();
 

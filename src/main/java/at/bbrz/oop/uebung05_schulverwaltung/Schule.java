@@ -12,13 +12,19 @@ public class Schule {
     }
 
     public void personAufnehmen(Schulperson person) {
+        if (person == null) {
+            return;
+        }
+
         if (isIdInPersonList(person.getId())) {
             throw new RuntimeException("Schulperson ID ist bereits vergeben");
         }
 
-        if (person != null) {
-            personen.add(person);
+        if (isNameInPersonList(person.getName())) {
+            throw new RuntimeException("Schulperson Name ist bereits vergeben");
         }
+
+        personen.add(person);
     }
 
     public Schulperson findePerson(int id) {
@@ -40,6 +46,16 @@ public class Schule {
     private boolean isIdInPersonList(int searchId) {
         for (Schulperson person : personen) {
             if (person.getId() == searchId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isNameInPersonList(String searchName) {
+        for (Schulperson person : personen) {
+            if (person.getName().equals(searchName)) {
                 return true;
             }
         }
