@@ -35,7 +35,14 @@ public class Uebung04 {
             System.out.println("Geheim: " + geheim.geheim());
         }
 
-        // TODO: Implementiere die Unterklasse Gruppenprojekt mit einem Projekttitel.
-        // TODO: Berechne den Notendurchschnitt aller Leistungen.
+        List<Benotbar> benotbareLeistungen = List.copyOf(leistungen);
+
+        double notenSumme = 0.0;
+        for (Benotbar benotbareLeistung : benotbareLeistungen) {
+            notenSumme += benotbareLeistung.getNote();
+        }
+
+        double notenDurchschnitt = notenSumme / benotbareLeistungen.size();
+        System.out.printf("Notendurchschnitt: %.2f%n", notenDurchschnitt);
     }
 }
