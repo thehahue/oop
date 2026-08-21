@@ -23,6 +23,18 @@ public class Uebung04 {
             }
         }
 
+        List<Geheim> listeGeheim = List.of(
+                new Referat("Mama", 4.5, "Vulkane"),
+                new Klassenarbeit("Papa", 1.5, "Mathematik"),
+                new GruppenProjekt("Opa", 2.0, "Programmieren"),
+                new Besprechung(),
+                new GeheimBesprechung("Geheimes Thema")
+        );
+
+        for (Geheim geheim : listeGeheim) {
+            System.out.println("Geheim: " + geheim.geheim());
+        }
+
         // TODO: Implementiere die Unterklasse Gruppenprojekt mit einem Projekttitel.
         // TODO: Berechne den Notendurchschnitt aller Leistungen.
     }
