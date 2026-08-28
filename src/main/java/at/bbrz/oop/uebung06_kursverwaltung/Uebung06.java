@@ -26,6 +26,7 @@ public class Uebung06 {
 
         verwaltung.schuelerAnmelden("SQL-Grundlagen", 2);
         verwaltung.schuelerAnmelden("SQL-Grundlagen", 4);
+
         verwaltung.schuelerAbmelden("SQL-Grundlagen", 2);
 
         verwaltung.kursangeboteAusgeben();

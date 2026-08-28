@@ -25,7 +25,7 @@ public class Kursangebot {
         if (schueler == null) {
             throw new IllegalArgumentException("Der Schueler darf nicht null sein.");
         }
-        if (kurs.getTeilnehmende().contains(schueler) || istAusgebucht()) {
+        if (istDerSchuelerSchonAngemeldet(schueler) || istAusgebucht()) {
             return false;
         }
 
@@ -56,5 +56,9 @@ public class Kursangebot {
         System.out.printf("  Plaetze: %d/%d (%s)%n",
                 getAnzahlTeilnehmende(), maxTeilnehmende,
                 istAusgebucht() ? "ausgebucht" : "verfuegbar");
+    }
+
+    private boolean istDerSchuelerSchonAngemeldet(Schueler schueler) {
+        return kurs.getTeilnehmende().contains(schueler);
     }
 }
