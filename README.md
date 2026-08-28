@@ -1,6 +1,6 @@
 # OOP-Einstieg mit Java – Übungen rund um die Schule
 
-Dieses Maven-Projekt enthält fünf aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
+Dieses Maven-Projekt enthält sechs aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
 
 ## Lerngrundlage
 
@@ -32,5 +32,20 @@ Die Diagramme lassen sich mit [draw.io / diagrams.net](https://app.diagrams.net/
 - [Übung 3 – Polymorphie](diagramme/uebung03_polymorphie.drawio)
 - [Übung 4 – Interfaces](diagramme/uebung04_interfaces.drawio)
 - [Übung 5 – Schulverwaltung](diagramme/uebung05_schulverwaltung.drawio)
+- [Übung 6 – Kursverwaltung](diagramme/uebung06_kursverwaltung.drawio)
 
-Die Startklassen `Uebung01` bis `Uebung05` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
+Die Startklassen `Uebung01` bis `Uebung06` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
+
+## Übung 6 – Kursverwaltung mit begrenzten Plätzen
+
+Übung 6 verwendet die Klassen `Schule`, `Schulperson`, `Lehrkraft`, `Schueler`, `Kurs` und `SchulFabric` aus Übung 5 weiter. Neu sind eine zentrale Verwaltung mehrerer Kurse, begrenzte Kursplätze und die Suche nach Personen über ihre ID.
+
+Lernziele:
+
+- vorhandene Klassen durch Komposition wiederverwenden
+- Kursangebote in einer `Map` verwalten
+- mit `instanceof` zwischen Schulpersonen unterscheiden
+- ungültige Verwaltungsoperationen mit Exceptions behandeln
+- Rückgabewerte für erfolgreiche und abgelehnte Anmeldungen auswerten
+
+Starte die Übung über `at.bbrz.oop.uebung06_kursverwaltung.Uebung06`. Die Zusatzaufgaben stehen am Ende der `main`-Methode.
