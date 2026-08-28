@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -44,7 +45,8 @@ public class SchulverwaltungFenster extends JFrame {
         protokoll.setLineWrap(true);
         protokoll.setWrapStyleWord(true);
         protokoll.setText("Waehle einen Kurs und gib eine Schueler-ID ein.\n"
-                + "Beispiel-IDs: 2 (Mia), 3 (Leon), 4 (Sara)\n");
+                + "Beispiel-IDs: 2 (Mia), 3 (Leon), 4 (Sara)\n"
+                + "Lehrkraft-IDs fuer neue Kurse: 9 und 10\n");
 
         pack();
         setLocationRelativeTo(null);
@@ -66,6 +68,9 @@ public class SchulverwaltungFenster extends JFrame {
         JButton kurseAusgebenButton = new JButton("Kurse ausgeben");
         kurseAusgebenButton.addActionListener(event -> kurseAusgeben());
 
+        JButton kursAnlegenButton = new JButton("Kurs anlegen");
+        kursAnlegenButton.addActionListener(event -> kursAnlegen());
+
         JButton protokollLeerenButton = new JButton("Protokoll leeren");
         protokollLeerenButton.addActionListener(event -> {
             protokoll.setText("");
@@ -76,6 +81,7 @@ public class SchulverwaltungFenster extends JFrame {
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttons.add(anmeldenButton);
         buttons.add(abmeldenButton);
+        buttons.add(kursAnlegenButton);
         buttons.add(kurseAusgebenButton);
         buttons.add(protokollLeerenButton);
 
@@ -125,6 +131,54 @@ public class SchulverwaltungFenster extends JFrame {
     private void kurseAusgeben() {
         protokoll.append(verwaltung.getKursuebersicht() + System.lineSeparator());
         erfolgAusgeben("Kursuebersicht wurde ausgegeben.");
+    }
+
+    private void kursAnlegen() {
+        JTextField kursnameFeld = new JTextField(20);
+        JTextField lehrkraftIdFeld = new JTextField(8);
+        JTextField maxTeilnehmendeFeld = new JTextField(8);
+
+        JPanel felder = new JPanel(new GridLayout(3, 2, 5, 5));
+        felder.add(new JLabel("Kursname:"));
+        felder.add(kursnameFeld);
+        felder.add(new JLabel("Lehrkraft-ID:"));
+        felder.add(lehrkraftIdFeld);
+        felder.add(new JLabel("Maximale Plaetze:"));
+        felder.add(maxTeilnehmendeFeld);
+
+        int auswahl = JOptionPane.showConfirmDialog(
+                this,
+                felder,
+                "Neuen Kurs anlegen",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE);
+
+        if (auswahl != JOptionPane.OK_OPTION) {
+            return;
+        }
+
+        try {
+            String kursname = kursnameFeld.getText().trim();
+            int lehrkraftId = Integer.parseInt(lehrkraftIdFeld.getText().trim());
+            int maxTeilnehmende = Integer.parseInt(maxTeilnehmendeFeld.getText().trim());
+
+            verwaltung.kursAnlegen(kursname, lehrkraftId, maxTeilnehmende);
+            kursAuswahlAktualisieren();
+            kursAuswahl.setSelectedItem(kursname);
+
+            erfolgAusgeben("Kurs " + kursname + " wurde angelegt.");
+        } catch (NumberFormatException exception) {
+            fehlerAusgeben("Lehrkraft-ID und maximale Plaetze muessen ganze Zahlen sein.");
+        } catch (IllegalArgumentException exception) {
+            fehlerAusgeben("Fehler: " + exception.getMessage());
+        }
+    }
+
+    private void kursAuswahlAktualisieren() {
+        kursAuswahl.removeAllItems();
+        for (String kursname : verwaltung.getKursnamen()) {
+            kursAuswahl.addItem(kursname);
+        }
     }
 
     private String getAusgewaehlterKurs() {
