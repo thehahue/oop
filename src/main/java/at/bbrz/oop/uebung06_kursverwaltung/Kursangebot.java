@@ -47,6 +47,10 @@ public class Kursangebot {
         return maxTeilnehmende;
     }
 
+    public int getFreiePlaetze() {
+        return maxTeilnehmende - getAnzahlTeilnehmende();
+    }
+
     public boolean istAusgebucht() {
         return getAnzahlTeilnehmende() >= maxTeilnehmende;
     }
