@@ -53,7 +53,7 @@ Starte die Übung über `at.bbrz.oop.uebung06_kursverwaltung.Uebung06`. Die Zusa
 
 ## Übung 7 – Eine einfache Benutzeroberfläche
 
-Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Ein Kurs kann ausgewählt und eine Schüler-ID eingegeben werden. Die Buttons melden den Schüler an oder ab; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
+Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Ein Kurs kann ausgewählt und eine Schüler-ID eingegeben werden. Die Buttons melden den Schüler an oder ab und geben die aktuelle Kursübersicht aus; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
 
 Lernziele:
 

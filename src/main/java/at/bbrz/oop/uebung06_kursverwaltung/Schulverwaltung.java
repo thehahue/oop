@@ -58,6 +58,24 @@ public class Schulverwaltung {
         return kursangebote.keySet().toArray(new String[0]);
     }
 
+    public String getKursuebersicht() {
+        StringBuilder uebersicht = new StringBuilder("Kursangebote der ")
+                .append(schule.getName())
+                .append(":");
+
+        for (Map.Entry<String, Kursangebot> eintrag : kursangebote.entrySet()) {
+            Kursangebot kursangebot = eintrag.getValue();
+            uebersicht.append(System.lineSeparator())
+                    .append("- ").append(eintrag.getKey())
+                    .append(": ").append(kursangebot.getAnzahlTeilnehmende())
+                    .append("/").append(kursangebot.getMaxTeilnehmende())
+                    .append(" Plaetze belegt, ")
+                    .append(kursangebot.getFreiePlaetze()).append(" frei");
+        }
+
+        return uebersicht.toString();
+    }
+
     public void kursangeboteAusgeben() {
         System.out.println("Kursangebote der " + schule.getName() + ":");
         for (Kursangebot kursangebot : kursangebote.values()) {

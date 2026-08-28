@@ -60,9 +60,13 @@ public class SchulverwaltungFenster extends JFrame {
         JButton abmeldenButton = new JButton("Abmelden");
         abmeldenButton.addActionListener(event -> schuelerAbmelden());
 
+        JButton kurseAusgebenButton = new JButton("Kurse ausgeben");
+        kurseAusgebenButton.addActionListener(event -> kurseAusgeben());
+
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttons.add(anmeldenButton);
         buttons.add(abmeldenButton);
+        buttons.add(kurseAusgebenButton);
 
         JPanel eingabe = new JPanel(new BorderLayout(5, 5));
         eingabe.add(felder, BorderLayout.CENTER);
@@ -104,6 +108,10 @@ public class SchulverwaltungFenster extends JFrame {
         } catch (IllegalArgumentException exception) {
             meldungAusgeben("Fehler: " + exception.getMessage());
         }
+    }
+
+    private void kurseAusgeben() {
+        meldungAusgeben(verwaltung.getKursuebersicht());
     }
 
     private String getAusgewaehlterKurs() {
