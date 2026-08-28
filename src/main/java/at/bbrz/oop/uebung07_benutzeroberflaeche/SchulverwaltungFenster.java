@@ -63,10 +63,14 @@ public class SchulverwaltungFenster extends JFrame {
         JButton kurseAusgebenButton = new JButton("Kurse ausgeben");
         kurseAusgebenButton.addActionListener(event -> kurseAusgeben());
 
+        JButton protokollLeerenButton = new JButton("Protokoll leeren");
+        protokollLeerenButton.addActionListener(event -> protokoll.setText(""));
+
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttons.add(anmeldenButton);
         buttons.add(abmeldenButton);
         buttons.add(kurseAusgebenButton);
+        buttons.add(protokollLeerenButton);
 
         JPanel eingabe = new JPanel(new BorderLayout(5, 5));
         eingabe.add(felder, BorderLayout.CENTER);
