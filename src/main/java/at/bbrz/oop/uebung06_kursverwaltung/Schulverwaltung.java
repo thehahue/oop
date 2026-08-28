@@ -58,6 +58,7 @@ public class Schulverwaltung {
         System.out.println("Kursangebote der " + schule.getName() + ":");
         for (Kursangebot kursangebot : kursangebote.values()) {
             kursangebot.ausgeben();
+            System.out.println("  Freie Plaetze: " + kursangebot.getFreiePlaetze());
         }
     }
 
