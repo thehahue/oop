@@ -82,6 +82,7 @@ public class SchulverwaltungFenster extends JFrame {
 
             if (erfolgreich) {
                 meldungAusgeben("Schueler " + schuelerId + " wurde bei " + kurs + " angemeldet.");
+                schuelerIdFeld.setText("");
             } else {
                 meldungAusgeben("Anmeldung nicht moeglich: Kurs voll oder Schueler bereits angemeldet.");
             }
