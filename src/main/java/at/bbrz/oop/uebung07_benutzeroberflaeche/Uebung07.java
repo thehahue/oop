@@ -18,10 +18,9 @@ public class Uebung07 {
         schule.personAufnehmen(new Schueler(4, "Sara", "JAVA-2"));
 
         Schulverwaltung verwaltung = new Schulverwaltung(schule);
-        String oopKurs = "Objektorientierte Programmierung";
-        String sqlKurs = "SQL-Grundlagen";
-        verwaltung.kursAnlegen(oopKurs, 9, 2);
-        verwaltung.kursAnlegen(sqlKurs, 10, 3);
+        verwaltung.kursAnlegen("Objektorientierte Programmierung", 9, 2);
+        verwaltung.kursAnlegen("SQL-Grundlagen", 10, 3);
+        verwaltung.kursAnlegen("Swing-Grundlagen", 10, 1);
 
         SwingUtilities.invokeLater(() -> {
             SchulverwaltungFenster fenster =
