@@ -62,6 +62,15 @@ public class Schulverwaltung {
         }
     }
 
+    public void ausgebuchteKurseAusgeben() {
+        System.out.println("Ausgebuchte Kurse der " + schule.getName() + ":");
+        for (Kursangebot kursangebot : kursangebote.values()) {
+            if (kursangebot.istAusgebucht()) {
+                kursangebot.ausgeben();
+            }
+        }
+    }
+
     private Schulperson findePersonOderFehler(int id) {
         Schulperson person = schule.findePerson(id);
         if (person == null) {

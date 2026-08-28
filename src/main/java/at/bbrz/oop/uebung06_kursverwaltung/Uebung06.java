@@ -31,6 +31,9 @@ public class Uebung06 {
 
         verwaltung.kursangeboteAusgeben();
 
+        System.out.println();
+        verwaltung.ausgebuchteKurseAusgeben();
+
         // Zusatzaufgaben:
         // TODO 1: Fuege Kursangebot.getFreiePlaetze() hinzu.
         // TODO 2: Gib in kursangeboteAusgeben() die freien Plaetze aus.
