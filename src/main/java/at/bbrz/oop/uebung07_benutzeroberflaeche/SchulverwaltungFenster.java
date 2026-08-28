@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -23,6 +24,7 @@ public class SchulverwaltungFenster extends JFrame {
     private final JComboBox<String> kursAuswahl;
     private final JTextField schuelerIdFeld = new JTextField(8);
     private final JTextArea protokoll = new JTextArea(10, 45);
+    private final JLabel statusMeldung = new JLabel("Bereit");
 
     public SchulverwaltungFenster(Schulverwaltung verwaltung) {
         this.verwaltung = verwaltung;
@@ -35,6 +37,7 @@ public class SchulverwaltungFenster extends JFrame {
         inhalt.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         inhalt.add(erstelleEingabebereich(), BorderLayout.NORTH);
         inhalt.add(new JScrollPane(protokoll), BorderLayout.CENTER);
+        inhalt.add(statusMeldung, BorderLayout.SOUTH);
         setContentPane(inhalt);
 
         protokoll.setEditable(false);
@@ -64,7 +67,11 @@ public class SchulverwaltungFenster extends JFrame {
         kurseAusgebenButton.addActionListener(event -> kurseAusgeben());
 
         JButton protokollLeerenButton = new JButton("Protokoll leeren");
-        protokollLeerenButton.addActionListener(event -> protokoll.setText(""));
+        protokollLeerenButton.addActionListener(event -> {
+            protokoll.setText("");
+            statusMeldung.setText("Protokoll wurde geleert.");
+            statusMeldung.setForeground(Color.GREEN.darker());
+        });
 
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttons.add(anmeldenButton);
@@ -85,15 +92,15 @@ public class SchulverwaltungFenster extends JFrame {
             boolean erfolgreich = verwaltung.schuelerAnmelden(kurs, schuelerId);
 
             if (erfolgreich) {
-                meldungAusgeben("Schueler " + schuelerId + " wurde bei " + kurs + " angemeldet.");
+                erfolgAusgeben("Schueler " + schuelerId + " wurde bei " + kurs + " angemeldet.");
                 schuelerIdFeld.setText("");
             } else {
-                meldungAusgeben("Anmeldung nicht moeglich: Kurs voll oder Schueler bereits angemeldet.");
+                fehlerAusgeben("Anmeldung nicht moeglich: Kurs voll oder Schueler bereits angemeldet.");
             }
         } catch (NumberFormatException exception) {
-            meldungAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
+            fehlerAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
         } catch (IllegalArgumentException exception) {
-            meldungAusgeben("Fehler: " + exception.getMessage());
+            fehlerAusgeben("Fehler: " + exception.getMessage());
         }
     }
 
@@ -104,19 +111,20 @@ public class SchulverwaltungFenster extends JFrame {
             boolean erfolgreich = verwaltung.schuelerAbmelden(kurs, schuelerId);
 
             if (erfolgreich) {
-                meldungAusgeben("Schueler " + schuelerId + " wurde von " + kurs + " abgemeldet.");
+                erfolgAusgeben("Schueler " + schuelerId + " wurde von " + kurs + " abgemeldet.");
             } else {
-                meldungAusgeben("Der Schueler war in diesem Kurs nicht angemeldet.");
+                fehlerAusgeben("Der Schueler war in diesem Kurs nicht angemeldet.");
             }
         } catch (NumberFormatException exception) {
-            meldungAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
+            fehlerAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
         } catch (IllegalArgumentException exception) {
-            meldungAusgeben("Fehler: " + exception.getMessage());
+            fehlerAusgeben("Fehler: " + exception.getMessage());
         }
     }
 
     private void kurseAusgeben() {
-        meldungAusgeben(verwaltung.getKursuebersicht());
+        protokoll.append(verwaltung.getKursuebersicht() + System.lineSeparator());
+        erfolgAusgeben("Kursuebersicht wurde ausgegeben.");
     }
 
     private String getAusgewaehlterKurs() {
@@ -127,8 +135,18 @@ public class SchulverwaltungFenster extends JFrame {
         return Integer.parseInt(schuelerIdFeld.getText().trim());
     }
 
-    private void meldungAusgeben(String meldung) {
+    private void erfolgAusgeben(String meldung) {
+        meldungAusgeben(meldung, Color.GREEN.darker());
+    }
+
+    private void fehlerAusgeben(String meldung) {
+        meldungAusgeben(meldung, Color.RED);
+    }
+
+    private void meldungAusgeben(String meldung, Color farbe) {
         protokoll.append(meldung + System.lineSeparator());
+        statusMeldung.setText(meldung);
+        statusMeldung.setForeground(farbe);
     }
 
     // Zusatzaufgaben:
