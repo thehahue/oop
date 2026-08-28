@@ -34,6 +34,12 @@ public class Uebung06 {
         System.out.println();
         verwaltung.ausgebuchteKurseAusgeben();
 
+        try {
+            verwaltung.schuelerAnmelden("SQL-Grundlagen", 999);
+        } catch (IllegalArgumentException exception) {
+            System.out.println("Erwarteter Fehler: " + exception.getMessage());
+        }
+
         // Zusatzaufgaben:
         // TODO 1: Fuege Kursangebot.getFreiePlaetze() hinzu.
         // TODO 2: Gib in kursangeboteAusgeben() die freien Plaetze aus.
