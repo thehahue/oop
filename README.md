@@ -1,6 +1,6 @@
 # OOP-Einstieg mit Java – Übungen rund um die Schule
 
-Dieses Maven-Projekt enthält sechs aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
+Dieses Maven-Projekt enthält sieben aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
 
 ## Lerngrundlage
 
@@ -33,8 +33,9 @@ Die Diagramme lassen sich mit [draw.io / diagrams.net](https://app.diagrams.net/
 - [Übung 4 – Interfaces](diagramme/uebung04_interfaces.drawio)
 - [Übung 5 – Schulverwaltung](diagramme/uebung05_schulverwaltung.drawio)
 - [Übung 6 – Kursverwaltung](diagramme/uebung06_kursverwaltung.drawio)
+- [Übung 7 – Benutzeroberfläche](diagramme/uebung07_benutzeroberflaeche.drawio)
 
-Die Startklassen `Uebung01` bis `Uebung06` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
+Die Startklassen `Uebung01` bis `Uebung07` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
 
 ## Übung 6 – Kursverwaltung mit begrenzten Plätzen
 
@@ -49,3 +50,17 @@ Lernziele:
 - Rückgabewerte für erfolgreiche und abgelehnte Anmeldungen auswerten
 
 Starte die Übung über `at.bbrz.oop.uebung06_kursverwaltung.Uebung06`. Die Zusatzaufgaben stehen am Ende der `main`-Methode.
+
+## Übung 7 – Eine einfache Benutzeroberfläche
+
+Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Ein Kurs kann ausgewählt und eine Schüler-ID eingegeben werden. Die Buttons melden den Schüler an oder ab; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
+
+Lernziele:
+
+- ein Fenster mit `JFrame` erstellen
+- Eingabefelder, Buttons und ein Ausgabefeld anordnen
+- mit Action Listenern auf Klicks reagieren
+- Texteingaben in Zahlen umwandeln und Fehler behandeln
+- Benutzeroberfläche und Fachlogik voneinander trennen
+
+Starte die Übung über `at.bbrz.oop.uebung07_benutzeroberflaeche.Uebung07`. Die Zusatzaufgaben stehen in der Klasse `SchulverwaltungFenster`.

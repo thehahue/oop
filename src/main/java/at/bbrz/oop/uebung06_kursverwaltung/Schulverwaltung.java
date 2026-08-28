@@ -54,6 +54,10 @@ public class Schulverwaltung {
         return findeKursOderFehler(kursbezeichnung).abmelden(schuelerId);
     }
 
+    public String[] getKursnamen() {
+        return kursangebote.keySet().toArray(new String[0]);
+    }
+
     public void kursangeboteAusgeben() {
         System.out.println("Kursangebote der " + schule.getName() + ":");
         for (Kursangebot kursangebot : kursangebote.values()) {
