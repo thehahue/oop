@@ -199,6 +199,7 @@ public class SchulverwaltungFenster extends JFrame {
 
     private void meldungAusgeben(String meldung, Color farbe) {
         protokoll.append(meldung + System.lineSeparator());
+
         statusMeldung.setText(meldung);
         statusMeldung.setForeground(farbe);
     }
