@@ -1,6 +1,7 @@
 package at.bbrz.oop.uebung05_schulverwaltung;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Schule {
@@ -44,6 +45,10 @@ public class Schule {
             }
         }
         return null;
+    }
+
+    public List<Schulperson> getPersonen() {
+        return Collections.unmodifiableList(personen);
     }
 
     public void personenAusgeben() {

@@ -6,7 +6,9 @@ import at.bbrz.oop.uebung05_schulverwaltung.Schueler;
 import at.bbrz.oop.uebung05_schulverwaltung.Schule;
 import at.bbrz.oop.uebung05_schulverwaltung.Schulperson;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,6 +58,26 @@ public class Schulverwaltung {
 
     public String[] getKursnamen() {
         return kursangebote.keySet().toArray(new String[0]);
+    }
+
+    public Schueler[] getAlleSchueler() {
+        List<Schueler> schueler = new ArrayList<>();
+        for (Schulperson person : schule.getPersonen()) {
+            if (person instanceof Schueler gefundenerSchueler) {
+                schueler.add(gefundenerSchueler);
+            }
+        }
+        return schueler.toArray(new Schueler[0]);
+    }
+
+    public Lehrkraft[] getAlleLehrkraefte() {
+        List<Lehrkraft> lehrkraefte = new ArrayList<>();
+        for (Schulperson person : schule.getPersonen()) {
+            if (person instanceof Lehrkraft gefundeneLehrkraft) {
+                lehrkraefte.add(gefundeneLehrkraft);
+            }
+        }
+        return lehrkraefte.toArray(new Lehrkraft[0]);
     }
 
     public String getKursuebersicht() {

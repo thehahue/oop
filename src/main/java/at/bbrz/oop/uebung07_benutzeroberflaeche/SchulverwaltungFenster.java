@@ -1,5 +1,7 @@
 package at.bbrz.oop.uebung07_benutzeroberflaeche;
 
+import at.bbrz.oop.uebung05_schulverwaltung.Lehrkraft;
+import at.bbrz.oop.uebung05_schulverwaltung.Schueler;
 import at.bbrz.oop.uebung06_kursverwaltung.Schulverwaltung;
 
 import javax.swing.BorderFactory;
@@ -23,13 +25,14 @@ import java.awt.GridLayout;
 public class SchulverwaltungFenster extends JFrame {
     private final Schulverwaltung verwaltung;
     private final JComboBox<String> kursAuswahl;
-    private final JTextField schuelerIdFeld = new JTextField(8);
+    private final JComboBox<Schueler> schuelerAuswahl;
     private final JTextArea protokoll = new JTextArea(10, 45);
     private final JLabel statusMeldung = new JLabel("Bereit");
 
     public SchulverwaltungFenster(Schulverwaltung verwaltung) {
         this.verwaltung = verwaltung;
         kursAuswahl = new JComboBox<>(verwaltung.getKursnamen());
+        schuelerAuswahl = new JComboBox<>(verwaltung.getAlleSchueler());
 
         setTitle("Schulverwaltung");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,9 +47,7 @@ public class SchulverwaltungFenster extends JFrame {
         protokoll.setEditable(false);
         protokoll.setLineWrap(true);
         protokoll.setWrapStyleWord(true);
-        protokoll.setText("Waehle einen Kurs und gib eine Schueler-ID ein.\n"
-                + "Beispiel-IDs: 2 (Mia), 3 (Leon), 4 (Sara)\n"
-                + "Lehrkraft-IDs fuer neue Kurse: 9 und 10\n");
+        protokoll.setText("Waehle einen Kurs und einen Schueler aus.\n");
 
         pack();
         setLocationRelativeTo(null);
@@ -56,8 +57,8 @@ public class SchulverwaltungFenster extends JFrame {
         JPanel felder = new JPanel(new GridLayout(2, 2, 5, 5));
         felder.add(new JLabel("Kurs:"));
         felder.add(kursAuswahl);
-        felder.add(new JLabel("Schueler-ID:"));
-        felder.add(schuelerIdFeld);
+        felder.add(new JLabel("Schueler:"));
+        felder.add(schuelerAuswahl);
 
         JButton anmeldenButton = new JButton("Anmelden");
         anmeldenButton.addActionListener(event -> schuelerAnmelden());
@@ -94,17 +95,15 @@ public class SchulverwaltungFenster extends JFrame {
     private void schuelerAnmelden() {
         try {
             String kurs = getAusgewaehlterKurs();
-            int schuelerId = getEingegebeneSchuelerId();
-            boolean erfolgreich = verwaltung.schuelerAnmelden(kurs, schuelerId);
+            Schueler schueler = getAusgewaehlterSchueler();
+            boolean erfolgreich = verwaltung.schuelerAnmelden(kurs, schueler.getId());
 
             if (erfolgreich) {
-                erfolgAusgeben("Schueler " + schuelerId + " wurde bei " + kurs + " angemeldet.");
-                schuelerIdFeld.setText("");
+                erfolgAusgeben(schueler.getName() + " wurde bei " + kurs + " angemeldet.");
+                schuelerAuswahl.setSelectedIndex(-1);
             } else {
                 fehlerAusgeben("Anmeldung nicht moeglich: Kurs voll oder Schueler bereits angemeldet.");
             }
-        } catch (NumberFormatException exception) {
-            fehlerAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
         } catch (IllegalArgumentException exception) {
             fehlerAusgeben("Fehler: " + exception.getMessage());
         }
@@ -113,16 +112,14 @@ public class SchulverwaltungFenster extends JFrame {
     private void schuelerAbmelden() {
         try {
             String kurs = getAusgewaehlterKurs();
-            int schuelerId = getEingegebeneSchuelerId();
-            boolean erfolgreich = verwaltung.schuelerAbmelden(kurs, schuelerId);
+            Schueler schueler = getAusgewaehlterSchueler();
+            boolean erfolgreich = verwaltung.schuelerAbmelden(kurs, schueler.getId());
 
             if (erfolgreich) {
-                erfolgAusgeben("Schueler " + schuelerId + " wurde von " + kurs + " abgemeldet.");
+                erfolgAusgeben(schueler.getName() + " wurde von " + kurs + " abgemeldet.");
             } else {
                 fehlerAusgeben("Der Schueler war in diesem Kurs nicht angemeldet.");
             }
-        } catch (NumberFormatException exception) {
-            fehlerAusgeben("Bitte eine gueltige Schueler-ID eingeben.");
         } catch (IllegalArgumentException exception) {
             fehlerAusgeben("Fehler: " + exception.getMessage());
         }
@@ -135,14 +132,15 @@ public class SchulverwaltungFenster extends JFrame {
 
     private void kursAnlegen() {
         JTextField kursnameFeld = new JTextField(20);
-        JTextField lehrkraftIdFeld = new JTextField(8);
+        JComboBox<Lehrkraft> lehrkraftAuswahl =
+                new JComboBox<>(verwaltung.getAlleLehrkraefte());
         JTextField maxTeilnehmendeFeld = new JTextField(8);
 
         JPanel felder = new JPanel(new GridLayout(3, 2, 5, 5));
         felder.add(new JLabel("Kursname:"));
         felder.add(kursnameFeld);
-        felder.add(new JLabel("Lehrkraft-ID:"));
-        felder.add(lehrkraftIdFeld);
+        felder.add(new JLabel("Lehrkraft:"));
+        felder.add(lehrkraftAuswahl);
         felder.add(new JLabel("Maximale Plaetze:"));
         felder.add(maxTeilnehmendeFeld);
 
@@ -159,16 +157,20 @@ public class SchulverwaltungFenster extends JFrame {
 
         try {
             String kursname = kursnameFeld.getText().trim();
-            int lehrkraftId = Integer.parseInt(lehrkraftIdFeld.getText().trim());
+            Lehrkraft lehrkraft = (Lehrkraft) lehrkraftAuswahl.getSelectedItem();
             int maxTeilnehmende = Integer.parseInt(maxTeilnehmendeFeld.getText().trim());
 
-            verwaltung.kursAnlegen(kursname, lehrkraftId, maxTeilnehmende);
+            if (lehrkraft == null) {
+                throw new IllegalArgumentException("Bitte eine Lehrkraft auswaehlen.");
+            }
+
+            verwaltung.kursAnlegen(kursname, lehrkraft.getId(), maxTeilnehmende);
             kursAuswahlAktualisieren();
             kursAuswahl.setSelectedItem(kursname);
 
             erfolgAusgeben("Kurs " + kursname + " wurde angelegt.");
         } catch (NumberFormatException exception) {
-            fehlerAusgeben("Lehrkraft-ID und maximale Plaetze muessen ganze Zahlen sein.");
+            fehlerAusgeben("Die maximale Teilnehmerzahl muss eine ganze Zahl sein.");
         } catch (IllegalArgumentException exception) {
             fehlerAusgeben("Fehler: " + exception.getMessage());
         }
@@ -185,8 +187,12 @@ public class SchulverwaltungFenster extends JFrame {
         return (String) kursAuswahl.getSelectedItem();
     }
 
-    private int getEingegebeneSchuelerId() {
-        return Integer.parseInt(schuelerIdFeld.getText().trim());
+    private Schueler getAusgewaehlterSchueler() {
+        Schueler schueler = (Schueler) schuelerAuswahl.getSelectedItem();
+        if (schueler == null) {
+            throw new IllegalArgumentException("Bitte einen Schueler auswaehlen.");
+        }
+        return schueler;
     }
 
     private void erfolgAusgeben(String meldung) {
@@ -205,7 +211,7 @@ public class SchulverwaltungFenster extends JFrame {
     }
 
     // Zusatzaufgaben:
-    // TODO 1: Leere das ID-Feld nach einer erfolgreichen Anmeldung.
+    // TODO 1: Leere die Schuelerauswahl nach einer erfolgreichen Anmeldung.
     // TODO 2: Fuege einen Button hinzu, der das Protokoll leert.
     // TODO 3: Zeige erfolgreiche Meldungen gruen und Fehlermeldungen rot an.
     // TODO 4: Erweitere die Oberflaeche um das Anlegen neuer Kurse.

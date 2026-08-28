@@ -28,4 +28,9 @@ public abstract class Schulperson {
     public String getBeschreibung() {
         return "%d - %s (%s)".formatted(id, name, getRolle());
     }
+
+    @Override
+    public String toString() {
+        return id + " - " + name;
+    }
 }

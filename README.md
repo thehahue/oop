@@ -53,12 +53,12 @@ Starte die Übung über `at.bbrz.oop.uebung06_kursverwaltung.Uebung06`. Die Zusa
 
 ## Übung 7 – Eine einfache Benutzeroberfläche
 
-Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Ein Kurs kann ausgewählt und eine Schüler-ID eingegeben werden. Ein modales Dialogfenster ermöglicht das Anlegen eines Kurses mit Lehrkraft und maximaler Teilnehmerzahl. Die Buttons melden Schüler an oder ab, legen Kurse an und geben die aktuelle Kursübersicht aus; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
+Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Kurse, Schüler und Lehrkräfte werden in ComboBoxen ausgewählt, sodass keine IDs eingegeben werden müssen. Ein modales Dialogfenster ermöglicht das Anlegen eines Kurses mit Lehrkraft und maximaler Teilnehmerzahl. Die Buttons melden Schüler an oder ab, legen Kurse an und geben die aktuelle Kursübersicht aus; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
 
 Lernziele:
 
 - ein Fenster mit `JFrame` erstellen
-- Eingabefelder, Buttons und ein Ausgabefeld anordnen
+- Eingabefelder, ComboBoxen, Buttons und ein Ausgabefeld anordnen
 - mit Action Listenern auf Klicks reagieren
 - Texteingaben in Zahlen umwandeln und Fehler behandeln
 - Benutzeroberfläche und Fachlogik voneinander trennen
