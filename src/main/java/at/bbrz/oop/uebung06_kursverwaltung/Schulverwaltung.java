@@ -7,6 +7,7 @@ import at.bbrz.oop.uebung05_schulverwaltung.Schule;
 import at.bbrz.oop.uebung05_schulverwaltung.Schulperson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,14 @@ public class Schulverwaltung {
             }
         }
         return lehrkraefte.toArray(new Lehrkraft[0]);
+    }
+
+    public Schule getSchule() {
+        return schule;
+    }
+
+    public Map<String, Kursangebot> getKursangebote() {
+        return Collections.unmodifiableMap(kursangebote);
     }
 
     public String getKursuebersicht() {

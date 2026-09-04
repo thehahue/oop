@@ -40,6 +40,14 @@ public class Kurs {
         return Collections.unmodifiableList(teilnehmende);
     }
 
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
+    public Lehrkraft getLehrkraft() {
+        return lehrkraft;
+    }
+
     public void ausgeben() {
         System.out.printf("%s mit %s (%d Teilnehmende)%n",
                 bezeichnung, lehrkraft.getName(), teilnehmende.size());

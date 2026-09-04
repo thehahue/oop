@@ -1,6 +1,6 @@
 # OOP-Einstieg mit Java – Übungen rund um die Schule
 
-Dieses Maven-Projekt enthält sieben aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
+Dieses Maven-Projekt enthält acht aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
 
 ## Lerngrundlage
 
@@ -34,8 +34,9 @@ Die Diagramme lassen sich mit [draw.io / diagrams.net](https://app.diagrams.net/
 - [Übung 5 – Schulverwaltung](diagramme/uebung05_schulverwaltung.drawio)
 - [Übung 6 – Kursverwaltung](diagramme/uebung06_kursverwaltung.drawio)
 - [Übung 7 – Benutzeroberfläche](diagramme/uebung07_benutzeroberflaeche.drawio)
+- [Übung 8 – Persistenz](diagramme/uebung08_persistenz.drawio)
 
-Die Startklassen `Uebung01` bis `Uebung07` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
+Die Startklassen `Uebung01` bis `Uebung08` sind als Abhängigkeiten eingezeichnet. Vererbung wird mit einer durchgezogenen Linie und einer leeren Dreiecksspitze dargestellt; die Implementierung eines Interfaces zusätzlich mit einer gestrichelten Linie.
 
 ## Übung 6 – Kursverwaltung mit begrenzten Plätzen
 
@@ -64,3 +65,17 @@ Lernziele:
 - Benutzeroberfläche und Fachlogik voneinander trennen
 
 Starte die Übung über `at.bbrz.oop.uebung07_benutzeroberflaeche.Uebung07`. Die Zusatzaufgaben stehen in der Klasse `SchulverwaltungFenster`.
+
+## Übung 8 – Schulverwaltung dauerhaft speichern
+
+Übung 8 führt das Interface `SchulverwaltungPersistenz` ein. Die Implementierung `DateiSchulverwaltungPersistenz` speichert Schule, Personen, Kurse und Anmeldungen in einer Textdatei und kann daraus wieder eine vollständige `Schulverwaltung` erzeugen. Dadurch hängt die Anwendung nur vom Interface ab; später könnte die Dateispeicherung beispielsweise durch eine Datenbank ersetzt werden. Die Klassen aus Übung 5 und 6 bleiben dabei nahezu unverändert und erhalten lediglich einige lesende Getter.
+
+Lernziele:
+
+- Persistenz hinter einem Interface kapseln
+- eine Interface-Implementierung austauschbar verwenden
+- Textdateien mit `Files`, `Path` und UTF-8 schreiben und lesen
+- Objektbeziehungen beim Laden wiederherstellen
+- Fehler mit `IOException` behandeln
+
+Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel schreibt nach `daten/schulverwaltung.txt`, lädt die Datei wieder und gibt die geladene Kursübersicht aus. Die Zusatzaufgaben stehen am Ende der `main`-Methode.
