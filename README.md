@@ -54,7 +54,7 @@ Starte die Übung über `at.bbrz.oop.uebung06_kursverwaltung.Uebung06`. Die Zusa
 
 ## Übung 7 – Eine einfache Benutzeroberfläche
 
-Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Kurse, Schüler und Lehrkräfte werden in ComboBoxen ausgewählt, sodass keine IDs eingegeben werden müssen. Ein modales Dialogfenster ermöglicht das Anlegen eines Kurses mit Lehrkraft und maximaler Teilnehmerzahl. Die Buttons melden Schüler an oder ab, legen Kurse an und geben die aktuelle Kursübersicht aus; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Die eigentliche Fachlogik bleibt dabei in der `Schulverwaltung` aus Übung 6.
+Übung 7 baut mit Java Swing ein kleines Fenster für die Kursverwaltung. Kurse, Schüler und Lehrkräfte werden in ComboBoxen ausgewählt, sodass keine IDs eingegeben werden müssen. Ein modales Dialogfenster ermöglicht das Anlegen eines Kurses mit Lehrkraft und maximaler Teilnehmerzahl. Die Buttons melden Schüler an oder ab, legen Kurse an und geben die aktuelle Kursübersicht aus; das Protokoll zeigt das Ergebnis und verständliche Fehlermeldungen an. Über weitere Buttons kann die Schulverwaltung mit einem Dateiauswahldialog gespeichert und geladen werden. Die Dateiverarbeitung verwendet dabei das Persistenz-Interface aus Übung 8. Die eigentliche Fachlogik bleibt in der `Schulverwaltung` aus Übung 6.
 
 Lernziele:
 
@@ -62,6 +62,8 @@ Lernziele:
 - Eingabefelder, ComboBoxen, Buttons und ein Ausgabefeld anordnen
 - mit Action Listenern auf Klicks reagieren
 - Texteingaben in Zahlen umwandeln und Fehler behandeln
+- mit `JFileChooser` Dateien zum Speichern und Laden auswählen
+- die Oberfläche nach dem Laden neuer Daten aktualisieren
 - Benutzeroberfläche und Fachlogik voneinander trennen
 
 Starte die Übung über `at.bbrz.oop.uebung07_benutzeroberflaeche.Uebung07`. Die Zusatzaufgaben stehen in der Klasse `SchulverwaltungFenster`.

@@ -3,10 +3,13 @@ package at.bbrz.oop.uebung07_benutzeroberflaeche;
 import at.bbrz.oop.uebung05_schulverwaltung.Lehrkraft;
 import at.bbrz.oop.uebung05_schulverwaltung.Schueler;
 import at.bbrz.oop.uebung06_kursverwaltung.Schulverwaltung;
+import at.bbrz.oop.uebung08_persistenz.DateiSchulverwaltungPersistenz;
+import at.bbrz.oop.uebung08_persistenz.SchulverwaltungPersistenz;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,23 +17,38 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * Eine einfache Swing-Oberflaeche fuer die Schulverwaltung aus Uebung 6.
  */
 public class SchulverwaltungFenster extends JFrame {
-    private final Schulverwaltung verwaltung;
+    private Schulverwaltung verwaltung;
+    private final SchulverwaltungPersistenz persistenz;
     private final JComboBox<String> kursAuswahl;
     private final JComboBox<Schueler> schuelerAuswahl;
     private final JTextArea protokoll = new JTextArea(10, 45);
     private final JLabel statusMeldung = new JLabel("Bereit");
 
     public SchulverwaltungFenster(Schulverwaltung verwaltung) {
+        this(verwaltung, new DateiSchulverwaltungPersistenz());
+    }
+
+    public SchulverwaltungFenster(Schulverwaltung verwaltung,
+                                  SchulverwaltungPersistenz persistenz) {
+        if (verwaltung == null || persistenz == null) {
+            throw new IllegalArgumentException(
+                    "Verwaltung und Persistenz duerfen nicht null sein.");
+        }
         this.verwaltung = verwaltung;
+        this.persistenz = persistenz;
         kursAuswahl = new JComboBox<>(verwaltung.getKursnamen());
         schuelerAuswahl = new JComboBox<>(verwaltung.getAlleSchueler());
 
@@ -79,11 +97,19 @@ public class SchulverwaltungFenster extends JFrame {
             statusMeldung.setForeground(Color.GREEN.darker());
         });
 
+        JButton speichernButton = new JButton("Speichern");
+        speichernButton.addActionListener(event -> verwaltungSpeichern());
+
+        JButton ladenButton = new JButton("Laden");
+        ladenButton.addActionListener(event -> verwaltungLaden());
+
         JPanel buttons = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttons.add(anmeldenButton);
         buttons.add(abmeldenButton);
         buttons.add(kursAnlegenButton);
         buttons.add(kurseAusgebenButton);
+        buttons.add(speichernButton);
+        buttons.add(ladenButton);
         buttons.add(protokollLeerenButton);
 
         JPanel eingabe = new JPanel(new BorderLayout(5, 5));
@@ -183,6 +209,69 @@ public class SchulverwaltungFenster extends JFrame {
         }
     }
 
+    private void schuelerAuswahlAktualisieren() {
+        schuelerAuswahl.removeAllItems();
+        for (Schueler schueler : verwaltung.getAlleSchueler()) {
+            schuelerAuswahl.addItem(schueler);
+        }
+    }
+
+    private void verwaltungSpeichern() {
+        JFileChooser dateiAuswahl = erstelleDateiAuswahl();
+        if (dateiAuswahl.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        Path datei = dateiAuswahl.getSelectedFile().toPath();
+        if (Files.exists(datei)) {
+            int antwort = JOptionPane.showConfirmDialog(
+                    this,
+                    "Die Datei existiert bereits. Soll sie ueberschrieben werden?",
+                    "Datei ueberschreiben",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (antwort != JOptionPane.YES_OPTION) {
+                return;
+            }
+        }
+
+        try {
+            persistenz.speichern(verwaltung, datei);
+            erfolgAusgeben("Schulverwaltung gespeichert: " + datei.toAbsolutePath());
+        } catch (IOException exception) {
+            fehlerAusgeben("Fehler beim Speichern: " + exception.getMessage());
+        }
+    }
+
+    private void verwaltungLaden() {
+        JFileChooser dateiAuswahl = erstelleDateiAuswahl();
+        if (dateiAuswahl.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        Path datei = dateiAuswahl.getSelectedFile().toPath();
+        try {
+            verwaltung = persistenz.laden(datei);
+            kursAuswahlAktualisieren();
+            schuelerAuswahlAktualisieren();
+            protokoll.append(verwaltung.getKursuebersicht() + System.lineSeparator());
+            erfolgAusgeben("Schulverwaltung geladen: " + datei.toAbsolutePath());
+        } catch (IOException exception) {
+            fehlerAusgeben("Fehler beim Laden: " + exception.getMessage());
+        }
+    }
+
+    private JFileChooser erstelleDateiAuswahl() {
+        JFileChooser dateiAuswahl = new JFileChooser();
+        Path datenOrdner = Path.of("daten");
+        if (Files.isDirectory(datenOrdner)) {
+            dateiAuswahl.setCurrentDirectory(datenOrdner.toFile());
+        }
+        dateiAuswahl.setFileFilter(
+                new FileNameExtensionFilter("Schulverwaltung (*.txt)", "txt"));
+        return dateiAuswahl;
+    }
+
     private String getAusgewaehlterKurs() {
         return (String) kursAuswahl.getSelectedItem();
     }
@@ -215,4 +304,6 @@ public class SchulverwaltungFenster extends JFrame {
     // TODO 2: Fuege einen Button hinzu, der das Protokoll leert.
     // TODO 3: Zeige erfolgreiche Meldungen gruen und Fehlermeldungen rot an.
     // TODO 4: Erweitere die Oberflaeche um das Anlegen neuer Kurse.
+    // TODO 5: Fuege Speichern und Laden mit einer Dateiauswahl hinzu.
+    // TODO 6: Aktualisiere nach dem Laden alle Auswahlfelder.
 }
