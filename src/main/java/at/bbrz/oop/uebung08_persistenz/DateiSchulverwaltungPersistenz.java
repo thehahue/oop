@@ -35,6 +35,7 @@ public class DateiSchulverwaltungPersistenz implements SchulverwaltungPersistenz
             Files.createDirectories(ordner);
         }
 
+        // Try with resources https://www.baeldung.com/java-try-with-resources
         try (BufferedWriter writer = Files.newBufferedWriter(datei, StandardCharsets.UTF_8)) {
             writer.write(DATEIKOPF);
             writer.newLine();

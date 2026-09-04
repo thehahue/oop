@@ -1,0 +1,10 @@
+SCHULVERWALTUNG;1
+SCHULE;BBRZ+Schule
+DIREKTOR;1;Franz+Hofer
+LEHRKRAFT;9;Frau+Novak;Programmieren
+LEHRKRAFT;10;Herr+Berger;Datenbanken
+SCHUELER;2;Mia;JAVA-1
+SCHUELER;3;Leon;JAVA-1
+SCHUELER;4;Sara;JAVA-2
+KURS;Objektorientierte+Programmierung;9;2;2%2C3
+KURS;SQL-Grundlagen;10;3;4
