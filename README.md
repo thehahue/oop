@@ -85,16 +85,14 @@ Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel
 ## Übung 9 – Polymorphie statt switch-case
 
 Übung 9 verwaltet unterschiedliche Gegenstände über das gemeinsame Interface
-`Item`. Ein Buch, ein Laptop und ein Rucksack befinden sich gemeinsam in einer
-`List<Item>`. Die Ausgabeschleife kennt nur das Interface und ruft für jeden
-Gegenstand `getDescription()`, `weightInKg()` und `priceInEur()` auf. Durch
-Polymorphie wird automatisch die Implementierung der jeweiligen Klasse
-ausgeführt. Gewicht und Preis aller Gegenstände werden anschließend summiert.
-`ItemJsonPersistenz` speichert
-die in `GameItems` enthaltene Liste mit Jackson in `daten/uebung9.json` und lädt
-sie anschließend wieder. Die konkrete Klasse jedes Gegenstands steht direkt im
-JSON. Deshalb ist keine zentrale Typregistrierung notwendig. Durch die eigene
-Containerklasse ist beim Laden keine `TypeReference` erforderlich.
+`Item`. Ein Rucksack nimmt unterschiedliche Gegenstände in einer `List<Item>`
+auf und begrenzt deren Gesamtgewicht. Die Berechnung von Gewicht und Preis
+erfolgt über das Interface. Beim Rucksack schließen beide Werte den Rucksack
+selbst und alle enthaltenen Gegenstände ein. Durch Polymorphie wird automatisch
+die Implementierung der jeweiligen Klasse ausgeführt. `ItemJsonPersistenz`
+speichert den gesamten Rucksack mit Jackson in `daten/uebung9.json` und lädt ihn
+anschließend wieder. Die konkrete Klasse jedes Gegenstands steht direkt im JSON.
+Deshalb ist keine zentrale Typregistrierung notwendig.
 
 Lernziele:
 
@@ -108,7 +106,7 @@ Starte die Übung über
 `at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Die nachträglich
 ergänzte Klasse `WaterBottle` zeigt, dass ein neuer Gegenstand nur `Item`
 implementieren und direkt zur Liste hinzugefügt werden muss. Wie die vorhandenen
-Gegenstände und `GameItems` ist sie als Record umgesetzt. Jackson kann die
+Gegenstände ist sie als Record umgesetzt. Jackson kann die
 Record-Komponenten ohne zusätzliche Konstruktor-, Getter- oder Setter-Methoden
 speichern und laden. Eine zentrale Anmeldung oder Registrierung des neuen Typs
 ist nicht notwendig. `Phone` ist als weiteres Beispiel auf dieselbe Weise
