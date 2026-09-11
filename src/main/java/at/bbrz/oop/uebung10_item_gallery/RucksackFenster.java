@@ -5,7 +5,6 @@ import at.bbrz.oop.uebung09_polymorphie_ohne_switch.Backpack;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,12 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Locale;
 
@@ -33,6 +36,8 @@ public class RucksackFenster extends JFrame {
     private static final Color ORANGE = new Color(255, 138, 61);
     private static final Color TEXT = new Color(235, 245, 255);
     private static final Color TEXT_SEKUNDAER = new Color(170, 197, 214);
+    private static final Color LOESCH_ROT = new Color(255, 82, 82);
+    private static final int LOESCH_BREITE = 58;
 
     private final Backpack backpack;
     private final DefaultListModel<ItemMitBild> itemModell = new DefaultListModel<>();
@@ -58,6 +63,12 @@ public class RucksackFenster extends JFrame {
         itemListe.setCellRenderer(new ItemRenderer());
         itemListe.setFixedCellHeight(112);
         itemListe.setBackground(HINTERGRUND);
+        itemListe.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                itemEntfernen(event);
+            }
+        });
         zusammenfassungAktualisieren();
         pack();
         setLocationRelativeTo(null);
@@ -157,6 +168,26 @@ public class RucksackFenster extends JFrame {
         return inventar;
     }
 
+    private void itemEntfernen(MouseEvent event) {
+        int index = itemListe.locationToIndex(event.getPoint());
+        if (index < 0) {
+            return;
+        }
+
+        Rectangle zelle = itemListe.getCellBounds(index, index);
+        boolean kreuzGetroffen = zelle != null
+                && zelle.contains(event.getPoint())
+                && event.getX() >= zelle.x + zelle.width - LOESCH_BREITE;
+        if (!kreuzGetroffen) {
+            return;
+        }
+
+        ItemMitBild item = itemModell.get(index);
+        backpack.removeItem(item);
+        itemModell.remove(index);
+        zusammenfassungAktualisieren();
+    }
+
     private void zusammenfassungAktualisieren() {
         double inhaltGewicht = backpack.contentWeightInKg();
         double maxGewicht = backpack.getMaxWeightInKg();
@@ -170,30 +201,48 @@ public class RucksackFenster extends JFrame {
                 itemModell.size(), backpack.priceInEur(), backpack.weightInKg()));
     }
 
-    private static final class ItemRenderer extends DefaultListCellRenderer {
+    private static final class ItemRenderer extends JPanel
+            implements ListCellRenderer<ItemMitBild> {
+        private final JLabel bild = new JLabel();
+        private final JLabel beschreibung = new JLabel();
+        private final JLabel loeschen = new JLabel("×", SwingConstants.CENTER);
+
+        private ItemRenderer() {
+            super(new BorderLayout(16, 0));
+            setOpaque(true);
+
+            bild.setOpaque(false);
+            beschreibung.setOpaque(false);
+            loeschen.setOpaque(false);
+            loeschen.setForeground(LOESCH_ROT);
+            loeschen.setFont(loeschen.getFont().deriveFont(Font.BOLD, 34f));
+            loeschen.setToolTipText("Item aus dem Rucksack entfernen");
+            loeschen.setPreferredSize(new Dimension(LOESCH_BREITE, 100));
+
+            add(bild, BorderLayout.WEST);
+            add(beschreibung, BorderLayout.CENTER);
+            add(loeschen, BorderLayout.EAST);
+        }
+
         @Override
         public Component getListCellRendererComponent(
-                JList<?> list,
-                Object value,
+                JList<? extends ItemMitBild> list,
+                ItemMitBild item,
                 int index,
                 boolean isSelected,
                 boolean cellHasFocus) {
-            ItemMitBild item = (ItemMitBild) value;
-            JLabel label = (JLabel) super.getListCellRendererComponent(
-                    list, value, index, isSelected, cellHasFocus);
-            label.setIcon(item.getBild(136, 85));
-            label.setIconTextGap(16);
-            label.setText(("<html><b>%s</b><br><font color='#AAD0E5'>"
-                    + "%.2f kg &nbsp;&middot;&nbsp; %s EUR</font></html>").formatted(
+            bild.setIcon(item.getBild(136, 85));
+            beschreibung.setText(("<html><b><font color='#EBF5FF'>%s</font></b>"
+                    + "<br><font color='#AAD0E5'>%.2f kg &nbsp;&middot;&nbsp; "
+                    + "%s EUR</font></html>").formatted(
                     item.getDescription(),
                     item.weightInKg(),
                     String.format(Locale.GERMANY, "%.2f", item.priceInEur())));
-            label.setForeground(TEXT);
-            label.setBackground(isSelected ? new Color(28, 78, 101) : KARTE);
-            label.setBorder(BorderFactory.createCompoundBorder(
+            setBackground(isSelected ? new Color(28, 78, 101) : KARTE);
+            setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createMatteBorder(0, 0, 5, 0, HINTERGRUND),
-                    BorderFactory.createEmptyBorder(8, 10, 8, 10)));
-            return label;
+                    BorderFactory.createEmptyBorder(8, 10, 8, 4)));
+            return this;
         }
     }
 }

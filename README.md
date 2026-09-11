@@ -125,8 +125,10 @@ Preis und Beschreibung werden an das ursprüngliche Objekt delegiert. Die
 Item-Klassen selbst bleiben unverändert.
 
 Das dunkle „Pack & Go“-Fenster zeigt den Rucksack, sein aktuelles Gewicht, den
-Gesamtwert und alle enthaltenen Gegenstände als bebilderte Karten. Die sechs
-Illustrationen liegen unter `src/main/resources/uebung10/`.
+Gesamtwert und alle enthaltenen Gegenstände als bebilderte Karten. Über das rote
+Kreuz rechts auf einer Karte wird der Gegenstand aus dem Rucksack entfernt;
+Gewicht und Gesamtwert werden sofort neu berechnet. Die sechs Illustrationen
+liegen unter `src/main/resources/uebung10/`.
 
 Lernziele:
 
