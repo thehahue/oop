@@ -88,7 +88,10 @@ Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel
 `Item`. Ein Buch, ein Laptop und ein Rucksack befinden sich gemeinsam in einer
 `List<Item>`. Die Ausgabeschleife kennt nur das Interface und ruft für jeden
 Gegenstand `getDescription()` auf. Durch Polymorphie wird automatisch die
-Implementierung der jeweiligen Klasse ausgeführt.
+Implementierung der jeweiligen Klasse ausgeführt. `ItemJsonPersistenz` speichert
+die gesamte Liste mit Jackson in `daten/uebung9.json` und lädt sie anschließend
+wieder. Die konkrete Klasse jedes Gegenstands steht direkt im JSON. Deshalb ist
+keine zentrale Typregistrierung notwendig.
 
 Lernziele:
 
@@ -96,9 +99,11 @@ Lernziele:
 - polymorphe Methodenaufrufe in einer Liste verstehen
 - Typprüfungen mit `switch` oder `instanceof` vermeiden
 - neue Typen ergänzen, ohne die bestehende Ausgabeschleife zu verändern
+- eine polymorphe Liste als JSON speichern und laden
 
 Starte die Übung über
 `at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Als Zusatzaufgabe soll
 eine weitere Klasse `WaterBottle` erstellt und direkt zur Liste hinzugefügt
-werden. Eine zentrale Anmeldung oder Registrierung des neuen Typs ist nicht
-notwendig.
+werden. Wie die vorhandenen Klassen benötigt sie einen parameterlosen Konstruktor
+sowie Getter und Setter, damit Jackson ihre Werte laden kann. Jackson-Annotationen
+und eine zentrale Anmeldung oder Registrierung des neuen Typs sind nicht notwendig.
