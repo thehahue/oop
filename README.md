@@ -102,8 +102,9 @@ Lernziele:
 - eine polymorphe Liste als JSON speichern und laden
 
 Starte die Übung über
-`at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Als Zusatzaufgabe soll
-eine weitere Klasse `WaterBottle` erstellt und direkt zur Liste hinzugefügt
-werden. Wie die vorhandenen Klassen benötigt sie einen parameterlosen Konstruktor
-sowie Getter und Setter, damit Jackson ihre Werte laden kann. Jackson-Annotationen
-und eine zentrale Anmeldung oder Registrierung des neuen Typs sind nicht notwendig.
+`at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Die nachträglich
+ergänzte Klasse `WaterBottle` zeigt, dass ein neuer Gegenstand nur `Item`
+implementieren und direkt zur Liste hinzugefügt werden muss. Wie die vorhandenen
+Klassen besitzt sie einen parameterlosen Konstruktor sowie Getter und Setter,
+damit Jackson ihre Werte laden kann. Jackson-Annotationen und eine zentrale
+Anmeldung oder Registrierung des neuen Typs sind nicht notwendig.

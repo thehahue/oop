@@ -10,6 +10,7 @@ public class Uebung09 {
         items.add(new Book("Der kleine Prinz", "Antoine de Saint-Exupery"));
         items.add(new Laptop("Lenovo", 75));
         items.add(new Backpack("blau", 4));
+        items.add(new WaterBottle("Edelstahl", 750));
 
         ItemJsonPersistenz persistenz = new ItemJsonPersistenz();
         try {
@@ -31,7 +32,5 @@ public class Uebung09 {
         // 2. Ein Objekt dieser Klasse zu items hinzufuegen.
         // Die Persistenz und die Schleife oben muessen nicht veraendert werden.
 
-        // TODO: Erstelle die Klasse WaterBottle, die Item implementiert.
-        // TODO: Fuege eine WaterBottle zur Liste hinzu.
     }
 }
