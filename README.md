@@ -1,6 +1,6 @@
 # OOP-Einstieg mit Java – Übungen rund um die Schule
 
-Dieses Maven-Projekt enthält acht aufeinander aufbauende Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
+Dieses Maven-Projekt enthält neun Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
 
 ## Lerngrundlage
 
@@ -81,3 +81,24 @@ Lernziele:
 - Fehler mit `IOException` behandeln
 
 Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel schreibt nach `daten/schulverwaltung.txt`, lädt die Datei wieder und gibt die geladene Kursübersicht aus. Die Zusatzaufgaben stehen am Ende der `main`-Methode.
+
+## Übung 9 – Polymorphie statt switch-case
+
+Übung 9 verwaltet unterschiedliche Gegenstände über das gemeinsame Interface
+`Item`. Ein Buch, ein Laptop und ein Rucksack befinden sich gemeinsam in einer
+`List<Item>`. Die Ausgabeschleife kennt nur das Interface und ruft für jeden
+Gegenstand `getDescription()` auf. Durch Polymorphie wird automatisch die
+Implementierung der jeweiligen Klasse ausgeführt.
+
+Lernziele:
+
+- unterschiedliche Klassen über ein gemeinsames Interface verwenden
+- polymorphe Methodenaufrufe in einer Liste verstehen
+- Typprüfungen mit `switch` oder `instanceof` vermeiden
+- neue Typen ergänzen, ohne die bestehende Ausgabeschleife zu verändern
+
+Starte die Übung über
+`at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Als Zusatzaufgabe soll
+eine weitere Klasse `WaterBottle` erstellt und direkt zur Liste hinzugefügt
+werden. Eine zentrale Anmeldung oder Registrierung des neuen Typs ist nicht
+notwendig.
