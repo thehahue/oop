@@ -89,9 +89,10 @@ Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel
 `List<Item>`. Die Ausgabeschleife kennt nur das Interface und ruft für jeden
 Gegenstand `getDescription()` auf. Durch Polymorphie wird automatisch die
 Implementierung der jeweiligen Klasse ausgeführt. `ItemJsonPersistenz` speichert
-die gesamte Liste mit Jackson in `daten/uebung9.json` und lädt sie anschließend
-wieder. Die konkrete Klasse jedes Gegenstands steht direkt im JSON. Deshalb ist
-keine zentrale Typregistrierung notwendig.
+die in `GameItems` enthaltene Liste mit Jackson in `daten/uebung9.json` und lädt
+sie anschließend wieder. Die konkrete Klasse jedes Gegenstands steht direkt im
+JSON. Deshalb ist keine zentrale Typregistrierung notwendig. Durch die eigene
+Containerklasse ist beim Laden keine `TypeReference` erforderlich.
 
 Lernziele:
 

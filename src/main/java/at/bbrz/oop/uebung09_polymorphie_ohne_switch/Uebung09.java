@@ -12,13 +12,14 @@ public class Uebung09 {
         items.add(new Backpack("blau", 4));
         items.add(new WaterBottle("Edelstahl", 750));
 
+        GameItems gameItems = new GameItems(items);
         ItemJsonPersistenz persistenz = new ItemJsonPersistenz();
         try {
-            persistenz.speichern(items);
-            List<Item> geladeneItems = persistenz.laden();
+            persistenz.speichern(gameItems);
+            GameItems geladeneGameItems = persistenz.laden();
 
             System.out.println("Aus daten/uebung9.json geladen:");
-            for (Item item : geladeneItems) {
+            for (Item item : geladeneGameItems.getItems()) {
                 System.out.println(item.getDescription());
             }
         } catch (IOException exception) {
