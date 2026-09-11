@@ -11,6 +11,7 @@ public class Uebung09 {
         items.add(new Laptop("Lenovo", 75));
         items.add(new Backpack("blau", 4));
         items.add(new WaterBottle("Edelstahl", 750));
+        items.add(new Phone("Google", "Pixel", 80));
 
         GameItems gameItems = new GameItems(items);
         ItemJsonPersistenz persistenz = new ItemJsonPersistenz();

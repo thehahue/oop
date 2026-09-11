@@ -109,4 +109,5 @@ implementieren und direkt zur Liste hinzugefügt werden muss. Wie die vorhandene
 Gegenstände und `GameItems` ist sie als Record umgesetzt. Jackson kann die
 Record-Komponenten ohne zusätzliche Konstruktor-, Getter- oder Setter-Methoden
 speichern und laden. Eine zentrale Anmeldung oder Registrierung des neuen Typs
-ist nicht notwendig.
+ist nicht notwendig. `Phone` ist als weiteres Beispiel auf dieselbe Weise
+ergänzt.
