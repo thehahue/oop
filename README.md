@@ -1,6 +1,6 @@
 # OOP-Einstieg mit Java – Übungen rund um die Schule
 
-Dieses Maven-Projekt enthält neun Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar und enthalten `TODO`-Kommentare zum selbstständigen Weiterarbeiten.
+Dieses Maven-Projekt enthält zehn Übungen für den Einstieg in die objektorientierte Programmierung (OOP). Alle Beispiele sind ausführbar.
 
 ## Lerngrundlage
 
@@ -115,3 +115,26 @@ JavaBean-Klasse umgesetzt.
 `recordSteps()` und `charge()` verändern ihre bestehende Instanz. Dadurch zeigt
 das Beispiel den Unterschied zwischen Records als einfachen Datenträgern und
 einer Domainklasse mit veränderlichem Zustand.
+
+## Übung 10 – Visuelle Item-Galerie mit Wrapper
+
+Übung 10 setzt auf dem Rucksack aus Übung 9 auf und ergänzt wieder eine
+Swing-Oberfläche. Die Klasse `ItemMitBild` verpackt jedes vorhandene `Item` und
+erweitert es per Komposition um eine lokal gespeicherte Illustration. Gewicht,
+Preis und Beschreibung werden an das ursprüngliche Objekt delegiert. Die
+Item-Klassen selbst bleiben unverändert.
+
+Das dunkle „Pack & Go“-Fenster zeigt den Rucksack, sein aktuelles Gewicht, den
+Gesamtwert und alle enthaltenen Gegenstände als bebilderte Karten. Die sechs
+Illustrationen liegen unter `src/main/resources/uebung10/`.
+
+Lernziele:
+
+- bestehende Objekte mit dem Wrapper-/Decorator-Prinzip erweitern
+- Methoden an ein verpacktes Objekt delegieren
+- Klassen aus einer vorherigen Übung wiederverwenden
+- eigene Bilder als Klassenpfad-Ressourcen laden
+- Listen mit einem eigenen Swing-Renderer gestalten
+
+Starte die Übung über
+`at.bbrz.oop.uebung10_item_gallery.Uebung10`.
