@@ -110,7 +110,8 @@ Gegenstände und `GameItems` ist sie als Record umgesetzt. Jackson kann die
 Record-Komponenten ohne zusätzliche Konstruktor-, Getter- oder Setter-Methoden
 speichern und laden. Eine zentrale Anmeldung oder Registrierung des neuen Typs
 ist nicht notwendig. `Phone` ist als weiteres Beispiel auf dieselbe Weise
-ergänzt. Der umfangreichere Record `SmartWatch` zeigt außerdem, dass Records
-Validierung und eigene Methoden enthalten können. Operationen wie
-`recordSteps()` und `charge()` geben eine neue Smartwatch zurück, weil die Werte
-eines Records nach seiner Erzeugung unveränderlich sind.
+ergänzt. Die zustandsbehaftete `SmartWatch` ist dagegen bewusst als mutable
+JavaBean-Klasse umgesetzt.
+`recordSteps()` und `charge()` verändern ihre bestehende Instanz. Dadurch zeigt
+das Beispiel den Unterschied zwischen Records als einfachen Datenträgern und
+einer Domainklasse mit veränderlichem Zustand.

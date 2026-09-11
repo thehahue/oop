@@ -13,8 +13,9 @@ public class Uebung09 {
         items.add(new WaterBottle("Edelstahl", 750));
         items.add(new Phone("Google", "Pixel", 80));
 
-        SmartWatch smartWatch = new SmartWatch("Garmin", 15, 7_500, 10_000);
-        smartWatch = smartWatch.recordSteps(3_000).charge();
+        SmartWatch smartWatch = new SmartWatch("Garmin", 15, 7_500, 20_000);
+        smartWatch.recordSteps(3_000);
+        smartWatch.charge();
         items.add(smartWatch);
 
         GameItems gameItems = new GameItems(items);

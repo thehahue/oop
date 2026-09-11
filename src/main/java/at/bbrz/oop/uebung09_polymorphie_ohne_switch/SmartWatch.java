@@ -1,42 +1,84 @@
 package at.bbrz.oop.uebung09_polymorphie_ohne_switch;
 
-public record SmartWatch(
-        String brand,
-        int batteryPercentage,
-        int steps,
-        int dailyStepGoal) implements Item {
-
+public class SmartWatch implements Item {
     private static final double AVERAGE_STEP_LENGTH_IN_METERS = 0.75;
 
-    public SmartWatch {
+    private String brand;
+    private int batteryPercentage;
+    private int steps;
+    private int dailyStepGoal;
+
+    public SmartWatch() {
+    }
+
+    public SmartWatch(
+            String brand,
+            int batteryPercentage,
+            int steps,
+            int dailyStepGoal) {
+        setBrand(brand);
+        setBatteryPercentage(batteryPercentage);
+        setSteps(steps);
+        setDailyStepGoal(dailyStepGoal);
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
         if (brand == null || brand.isBlank()) {
             throw new IllegalArgumentException("Die Marke darf nicht leer sein.");
         }
+        this.brand = brand;
+    }
+
+    public int getBatteryPercentage() {
+        return batteryPercentage;
+    }
+
+    public void setBatteryPercentage(int batteryPercentage) {
         if (batteryPercentage < 0 || batteryPercentage > 100) {
             throw new IllegalArgumentException(
                     "Der Akkustand muss zwischen 0 und 100 liegen.");
         }
+        this.batteryPercentage = batteryPercentage;
+    }
+
+    public int getSteps() {
+        return steps;
+    }
+
+    public void setSteps(int steps) {
         if (steps < 0) {
             throw new IllegalArgumentException(
                     "Die Schrittzahl darf nicht negativ sein.");
         }
+        this.steps = steps;
+    }
+
+    public int getDailyStepGoal() {
+        return dailyStepGoal;
+    }
+
+    public void setDailyStepGoal(int dailyStepGoal) {
         if (dailyStepGoal <= 0) {
             throw new IllegalArgumentException(
                     "Das Schrittziel muss positiv sein.");
         }
+        this.dailyStepGoal = dailyStepGoal;
     }
 
-    public SmartWatch recordSteps(int additionalSteps) {
+    public void recordSteps(int additionalSteps) {
         if (additionalSteps < 0) {
             throw new IllegalArgumentException(
                     "Zusaetzliche Schritte duerfen nicht negativ sein.");
         }
-        return new SmartWatch(
-                brand, batteryPercentage, steps + additionalSteps, dailyStepGoal);
+        steps += additionalSteps;
     }
 
-    public SmartWatch charge() {
-        return new SmartWatch(brand, 100, steps, dailyStepGoal);
+    public void charge() {
+        batteryPercentage = 100;
     }
 
     public boolean dailyGoalReached() {
