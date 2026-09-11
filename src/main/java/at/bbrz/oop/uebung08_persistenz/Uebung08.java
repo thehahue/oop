@@ -14,7 +14,7 @@ public class Uebung08 {
         Schulverwaltung verwaltung = beispielVerwaltungErstellen();
 
         // Die Anwendung kennt nur das Interface. Die Implementierung ist austauschbar.
-        SchulverwaltungPersistenz persistenz = new DateiSchulverwaltungPersistenz();
+        SchulverwaltungPersistenz persistenz = new JsonSchulverwaltungPersistenz();
         Path datei = Path.of("daten", "schulverwaltung.txt");
 
         try {

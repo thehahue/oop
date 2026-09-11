@@ -4,6 +4,7 @@ import at.bbrz.oop.uebung05_schulverwaltung.Lehrkraft;
 import at.bbrz.oop.uebung05_schulverwaltung.Schueler;
 import at.bbrz.oop.uebung06_kursverwaltung.Schulverwaltung;
 import at.bbrz.oop.uebung08_persistenz.DateiSchulverwaltungPersistenz;
+import at.bbrz.oop.uebung08_persistenz.JsonSchulverwaltungPersistenz;
 import at.bbrz.oop.uebung08_persistenz.SchulverwaltungPersistenz;
 
 import javax.swing.BorderFactory;
@@ -38,7 +39,7 @@ public class SchulverwaltungFenster extends JFrame {
     private final JLabel statusMeldung = new JLabel("Bereit");
 
     public SchulverwaltungFenster(Schulverwaltung verwaltung) {
-        this(verwaltung, new DateiSchulverwaltungPersistenz());
+        this(verwaltung, new JsonSchulverwaltungPersistenz());
     }
 
     public SchulverwaltungFenster(Schulverwaltung verwaltung,
