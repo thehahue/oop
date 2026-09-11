@@ -106,6 +106,7 @@ Starte die Übung über
 `at.bbrz.oop.uebung09_polymorphie_ohne_switch.Uebung09`. Die nachträglich
 ergänzte Klasse `WaterBottle` zeigt, dass ein neuer Gegenstand nur `Item`
 implementieren und direkt zur Liste hinzugefügt werden muss. Wie die vorhandenen
-Klassen besitzt sie einen parameterlosen Konstruktor sowie Getter und Setter,
-damit Jackson ihre Werte laden kann. Jackson-Annotationen und eine zentrale
-Anmeldung oder Registrierung des neuen Typs sind nicht notwendig.
+Gegenstände und `GameItems` ist sie als Record umgesetzt. Jackson kann die
+Record-Komponenten ohne zusätzliche Konstruktor-, Getter- oder Setter-Methoden
+speichern und laden. Eine zentrale Anmeldung oder Registrierung des neuen Typs
+ist nicht notwendig.

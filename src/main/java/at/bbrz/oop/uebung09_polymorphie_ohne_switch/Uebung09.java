@@ -19,7 +19,7 @@ public class Uebung09 {
             GameItems geladeneGameItems = persistenz.laden();
 
             System.out.println("Aus daten/uebung9.json geladen:");
-            for (Item item : geladeneGameItems.getItems()) {
+            for (Item item : geladeneGameItems.items()) {
                 System.out.println(item.getDescription());
             }
         } catch (IOException exception) {
