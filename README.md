@@ -110,4 +110,7 @@ Gegenstände und `GameItems` ist sie als Record umgesetzt. Jackson kann die
 Record-Komponenten ohne zusätzliche Konstruktor-, Getter- oder Setter-Methoden
 speichern und laden. Eine zentrale Anmeldung oder Registrierung des neuen Typs
 ist nicht notwendig. `Phone` ist als weiteres Beispiel auf dieselbe Weise
-ergänzt.
+ergänzt. Der umfangreichere Record `SmartWatch` zeigt außerdem, dass Records
+Validierung und eigene Methoden enthalten können. Operationen wie
+`recordSteps()` und `charge()` geben eine neue Smartwatch zurück, weil die Werte
+eines Records nach seiner Erzeugung unveränderlich sind.

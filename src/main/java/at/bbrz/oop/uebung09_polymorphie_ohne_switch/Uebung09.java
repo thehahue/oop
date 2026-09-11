@@ -13,6 +13,10 @@ public class Uebung09 {
         items.add(new WaterBottle("Edelstahl", 750));
         items.add(new Phone("Google", "Pixel", 80));
 
+        SmartWatch smartWatch = new SmartWatch("Garmin", 15, 7_500, 10_000);
+        smartWatch = smartWatch.recordSteps(3_000).charge();
+        items.add(smartWatch);
+
         GameItems gameItems = new GameItems(items);
         ItemJsonPersistenz persistenz = new ItemJsonPersistenz();
         try {
