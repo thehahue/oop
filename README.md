@@ -87,8 +87,10 @@ Starte die Übung über `at.bbrz.oop.uebung08_persistenz.Uebung08`. Das Beispiel
 Übung 9 verwaltet unterschiedliche Gegenstände über das gemeinsame Interface
 `Item`. Ein Buch, ein Laptop und ein Rucksack befinden sich gemeinsam in einer
 `List<Item>`. Die Ausgabeschleife kennt nur das Interface und ruft für jeden
-Gegenstand `getDescription()` auf. Durch Polymorphie wird automatisch die
-Implementierung der jeweiligen Klasse ausgeführt. `ItemJsonPersistenz` speichert
+Gegenstand `getDescription()`, `weightInKg()` und `priceInEur()` auf. Durch
+Polymorphie wird automatisch die Implementierung der jeweiligen Klasse
+ausgeführt. Gewicht und Preis aller Gegenstände werden anschließend summiert.
+`ItemJsonPersistenz` speichert
 die in `GameItems` enthaltene Liste mit Jackson in `daten/uebung9.json` und lädt
 sie anschließend wieder. Die konkrete Klasse jedes Gegenstands steht direkt im
 JSON. Deshalb ist keine zentrale Typregistrierung notwendig. Durch die eigene

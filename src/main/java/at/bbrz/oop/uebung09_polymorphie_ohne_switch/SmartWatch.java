@@ -7,6 +7,8 @@ public class SmartWatch implements Item {
     private int batteryPercentage;
     private int steps;
     private int dailyStepGoal;
+    private double weightInKg;
+    private double priceInEur;
 
     public SmartWatch() {
     }
@@ -15,11 +17,15 @@ public class SmartWatch implements Item {
             String brand,
             int batteryPercentage,
             int steps,
-            int dailyStepGoal) {
+            int dailyStepGoal,
+            double weightInKg,
+            double priceInEur) {
         setBrand(brand);
         setBatteryPercentage(batteryPercentage);
         setSteps(steps);
         setDailyStepGoal(dailyStepGoal);
+        setWeightInKg(weightInKg);
+        setPriceInEur(priceInEur);
     }
 
     public String getBrand() {
@@ -67,6 +73,39 @@ public class SmartWatch implements Item {
                     "Das Schrittziel muss positiv sein.");
         }
         this.dailyStepGoal = dailyStepGoal;
+    }
+
+    public double getWeightInKg() {
+        return weightInKg;
+    }
+
+    public void setWeightInKg(double weightInKg) {
+        if (!Double.isFinite(weightInKg) || weightInKg <= 0) {
+            throw new IllegalArgumentException("Das Gewicht muss positiv sein.");
+        }
+        this.weightInKg = weightInKg;
+    }
+
+    public double getPriceInEur() {
+        return priceInEur;
+    }
+
+    public void setPriceInEur(double priceInEur) {
+        if (!Double.isFinite(priceInEur) || priceInEur < 0) {
+            throw new IllegalArgumentException(
+                    "Der Preis darf nicht negativ sein.");
+        }
+        this.priceInEur = priceInEur;
+    }
+
+    @Override
+    public double weightInKg() {
+        return weightInKg;
+    }
+
+    @Override
+    public double priceInEur() {
+        return priceInEur;
     }
 
     public void recordSteps(int additionalSteps) {

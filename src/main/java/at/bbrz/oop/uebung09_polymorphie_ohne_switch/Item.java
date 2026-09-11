@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "klasse")
 public interface Item {
+    double weightInKg();
+
+    double priceInEur();
+
     @JsonIgnore
     String getDescription();
 }
