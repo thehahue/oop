@@ -1,0 +1,55 @@
+{
+  "version" : 1,
+  "schule" : "BBRZ Schule",
+  "personen" : [ {
+    "typ" : "DIREKTOR",
+    "id" : 1,
+    "name" : "Franz Hofer"
+  }, {
+    "typ" : "LEHRKRAFT",
+    "id" : 9,
+    "name" : "Frau Novak",
+    "fach" : "Programmieren"
+  }, {
+    "typ" : "LEHRKRAFT",
+    "id" : 10,
+    "name" : "Herr Berger",
+    "fach" : "Datenbanken"
+  }, {
+    "typ" : "SCHUELER",
+    "id" : 2,
+    "name" : "Mia",
+    "klasse" : "JAVA-1"
+  }, {
+    "typ" : "SCHUELER",
+    "id" : 3,
+    "name" : "Leon",
+    "klasse" : "JAVA-1"
+  }, {
+    "typ" : "SCHUELER",
+    "id" : 4,
+    "name" : "Sara",
+    "klasse" : "JAVA-2"
+  } ],
+  "kurse" : [ {
+    "bezeichnung" : "Objektorientierte Programmierung",
+    "lehrkraftId" : 9,
+    "maxTeilnehmende" : 2,
+    "teilnehmendeIds" : [ 2, 3 ]
+  }, {
+    "bezeichnung" : "SQL-Grundlagen",
+    "lehrkraftId" : 10,
+    "maxTeilnehmende" : 3,
+    "teilnehmendeIds" : [ ]
+  }, {
+    "bezeichnung" : "Swing-Grundlagen",
+    "lehrkraftId" : 10,
+    "maxTeilnehmende" : 1,
+    "teilnehmendeIds" : [ ]
+  }, {
+    "bezeichnung" : "test",
+    "lehrkraftId" : 9,
+    "maxTeilnehmende" : 4,
+    "teilnehmendeIds" : [ ]
+  } ]
+}

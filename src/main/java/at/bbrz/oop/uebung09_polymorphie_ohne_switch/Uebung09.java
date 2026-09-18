@@ -18,6 +18,11 @@ public class Uebung09 {
         smartWatch.charge();
         backpack.addItem(smartWatch);
 
+        Backpack neuerBackback = new Backpack("Grün", 3, 1, 99, 4);
+        neuerBackback.addItem(new Book("Harry Potter", "Harry Potter", 0.25, 12.90));
+
+        backpack.addItem(neuerBackback);
+
         ItemJsonPersistenz persistenz = new ItemJsonPersistenz();
         try {
             persistenz.speichern(backpack);

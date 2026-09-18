@@ -1,0 +1,56 @@
+{
+  "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Backpack",
+  "color" : "blau",
+  "numberOfCompartments" : 4,
+  "emptyWeightInKg" : 0.8,
+  "ownPriceInEur" : 59.9,
+  "maxWeightInKg" : 5.0,
+  "items" : [ {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Book",
+    "title" : "Der kleine Prinz",
+    "author" : "Antoine de Saint-Exupery",
+    "weightInKg" : 0.25,
+    "priceInEur" : 12.9
+  }, {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Laptop",
+    "brand" : "Lenovo",
+    "batteryPercentage" : 75,
+    "weightInKg" : 1.7,
+    "priceInEur" : 899.0
+  }, {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.WaterBottle",
+    "material" : "Edelstahl",
+    "capacityInMilliliters" : 750,
+    "weightInKg" : 0.35,
+    "priceInEur" : 24.9
+  }, {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Phone",
+    "brand" : "Google",
+    "model" : "Pixel",
+    "batteryPercentage" : 80,
+    "weightInKg" : 0.19,
+    "priceInEur" : 699.0
+  }, {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.SmartWatch",
+    "brand" : "Garmin",
+    "batteryPercentage" : 100,
+    "steps" : 10500,
+    "dailyStepGoal" : 20000,
+    "weightInKg" : 0.05,
+    "priceInEur" : 299.99
+  }, {
+    "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Backpack",
+    "color" : "Grün",
+    "numberOfCompartments" : 3,
+    "emptyWeightInKg" : 1.0,
+    "ownPriceInEur" : 99.0,
+    "maxWeightInKg" : 4.0,
+    "items" : [ {
+      "klasse" : "at.bbrz.oop.uebung09_polymorphie_ohne_switch.Book",
+      "title" : "Harry Potter",
+      "author" : "Harry Potter",
+      "weightInKg" : 0.25,
+      "priceInEur" : 12.9
+    } ]
+  } ]
+}
