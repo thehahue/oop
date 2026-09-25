@@ -38,7 +38,4 @@ public class KlassenZulassung implements Zulassungsstrategie {
                         + " ist fuer diesen Kurs nicht zugelassen.");
     }
 
-    public Set<String> getZugelasseneKlassen() {
-        return zugelasseneKlassen;
-    }
 }
