@@ -34,11 +34,16 @@ public class Uebung11 {
         ausgeben(abendklassenService.anmelden("Backend-Grundlagen-Abend", 3));
         ausgeben(abendklassenService.anmelden("Backend-Grundlagen-Abend", 5));
 
+        KursAnmeldeService praefixService = new KursAnmeldeService(
+                verwaltung,
+                new KlassenpraefixZulassung(Set.of("Abend-", "DATA-")));
+        ausgeben(praefixService.anmelden("Backend-Grundlagen", 3));
+        ausgeben(praefixService.anmelden("Backend-Grundlagen", 5));
+
         System.out.println();
         System.out.println(verwaltung.getKursuebersicht());
 
         // Zusatzaufgaben:
-        // TODO 2: Erlaube in einer neuen Strategy mehrere Klassenpraefixe.
         // TODO 3: Kombiniere mehrere Strategien, die alle zustimmen muessen.
     }
 
