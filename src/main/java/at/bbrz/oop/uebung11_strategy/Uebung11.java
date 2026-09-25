@@ -6,6 +6,7 @@ import at.bbrz.oop.uebung05_schulverwaltung.SchulFabric;
 import at.bbrz.oop.uebung05_schulverwaltung.Schule;
 import at.bbrz.oop.uebung06_kursverwaltung.Schulverwaltung;
 
+import java.util.List;
 import java.util.Set;
 
 public class Uebung11 {
@@ -40,11 +41,20 @@ public class Uebung11 {
         ausgeben(praefixService.anmelden("Backend-Grundlagen", 3));
         ausgeben(praefixService.anmelden("Backend-Grundlagen", 5));
 
+        // Fuer den Abendkurs muessen beide Regeln erfuellt sein:
+        // Abendklasse und eine auf Programmieren ausgerichtete JAVA-Klasse.
+        KursAnmeldeService kombinierterService = new KursAnmeldeService(
+                verwaltung,
+                new KombinierteZulassung(List.of(
+                        new NurAbendklassenZulassung(),
+                        new KlassenpraefixZulassung(Set.of("Abend-JAVA-")))));
+        ausgeben(kombinierterService.anmelden(
+                "Backend-Grundlagen-Abend", 6));
+        ausgeben(kombinierterService.anmelden(
+                "Backend-Grundlagen-Abend", 7));
+
         System.out.println();
         System.out.println(verwaltung.getKursuebersicht());
-
-        // Zusatzaufgaben:
-        // TODO 3: Kombiniere mehrere Strategien, die alle zustimmen muessen.
     }
 
     public static Schulverwaltung beispielVerwaltungErstellen() {
@@ -54,6 +64,8 @@ public class Uebung11 {
         schule.personAufnehmen(new Schueler(3, "Leon", "JAVA-1"));
         schule.personAufnehmen(new Schueler(4, "Sara", "JAVA-2"));
         schule.personAufnehmen(new Schueler(5, "Nora", "Abend-JAVA-1"));
+        schule.personAufnehmen(new Schueler(6, "David", "Abend-DATA-1"));
+        schule.personAufnehmen(new Schueler(7, "Eva", "Abend-JAVA-2"));
 
         Schulverwaltung verwaltung = new Schulverwaltung(schule);
         verwaltung.kursAnlegen("Backend-Grundlagen", 9, 3);
