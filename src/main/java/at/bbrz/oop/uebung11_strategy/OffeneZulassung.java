@@ -11,6 +11,9 @@ public class OffeneZulassung implements Zulassungsstrategie {
     public Zulassungsentscheidung pruefen(
             Kursangebot kursangebot,
             Schueler schueler) {
+        if (kursangebot.istAusgebucht()) {
+            return Zulassungsentscheidung.abgelehnt("Kurs ist voll");
+        }
         //return new Zulassungsentscheidung(true, "blub");
         return Zulassungsentscheidung.erlaubt(
                 "Der Kurs ist fuer alle Klassen offen.");
