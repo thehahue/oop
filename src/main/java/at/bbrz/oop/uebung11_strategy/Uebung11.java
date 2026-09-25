@@ -32,10 +32,9 @@ public class Uebung11 {
         System.out.println(verwaltung.getKursuebersicht());
 
         // Zusatzaufgaben:
-        // TODO 1: Implementiere eine NurAbendklassenZulassung.
+        // TODO 1: Implementiere eine NurAbendklassenZulassung. (Einfacher Ansatz: Kursbezeichnung beginnt mit Abend-...)
         // TODO 2: Erlaube in einer neuen Strategy mehrere Klassenpraefixe.
         // TODO 3: Kombiniere mehrere Strategien, die alle zustimmen muessen.
-        // TODO 4: Teste unbekannte Kurse, unbekannte IDs und volle Kurse.
     }
 
     public static Schulverwaltung beispielVerwaltungErstellen() {
