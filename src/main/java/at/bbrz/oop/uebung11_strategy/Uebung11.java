@@ -28,11 +28,16 @@ public class Uebung11 {
                 new OffeneZulassung());
         ausgeben(offenerService.anmelden("Backend-Grundlagen", 4));
 
+        KursAnmeldeService abendklassenService = new KursAnmeldeService(
+                verwaltung,
+                new NurAbendklassenZulassung());
+        ausgeben(abendklassenService.anmelden("Backend-Grundlagen", 3));
+        ausgeben(abendklassenService.anmelden("Backend-Grundlagen", 5));
+
         System.out.println();
         System.out.println(verwaltung.getKursuebersicht());
 
         // Zusatzaufgaben:
-        // TODO 1: Implementiere eine NurAbendklassenZulassung. (Einfacher Ansatz: Klassenname beginnt mit Abend-...)
         // TODO 2: Erlaube in einer neuen Strategy mehrere Klassenpraefixe.
         // TODO 3: Kombiniere mehrere Strategien, die alle zustimmen muessen.
     }
@@ -43,6 +48,7 @@ public class Uebung11 {
         schule.personAufnehmen(new Schueler(2, "Mia", "JAVA-1"));
         schule.personAufnehmen(new Schueler(3, "Leon", "JAVA-1"));
         schule.personAufnehmen(new Schueler(4, "Sara", "JAVA-2"));
+        schule.personAufnehmen(new Schueler(5, "Nora", "Abend-JAVA-1"));
 
         Schulverwaltung verwaltung = new Schulverwaltung(schule);
         verwaltung.kursAnlegen("Backend-Grundlagen", 9, 3);
