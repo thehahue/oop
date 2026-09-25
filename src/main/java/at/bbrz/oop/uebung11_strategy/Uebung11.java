@@ -31,8 +31,8 @@ public class Uebung11 {
         KursAnmeldeService abendklassenService = new KursAnmeldeService(
                 verwaltung,
                 new NurAbendklassenZulassung());
-        ausgeben(abendklassenService.anmelden("Backend-Grundlagen", 3));
-        ausgeben(abendklassenService.anmelden("Backend-Grundlagen", 5));
+        ausgeben(abendklassenService.anmelden("Backend-Grundlagen-Abend", 3));
+        ausgeben(abendklassenService.anmelden("Backend-Grundlagen-Abend", 5));
 
         System.out.println();
         System.out.println(verwaltung.getKursuebersicht());
@@ -52,6 +52,7 @@ public class Uebung11 {
 
         Schulverwaltung verwaltung = new Schulverwaltung(schule);
         verwaltung.kursAnlegen("Backend-Grundlagen", 9, 3);
+        verwaltung.kursAnlegen("Backend-Grundlagen-Abend", 9, 5);
         return verwaltung;
     }
 
