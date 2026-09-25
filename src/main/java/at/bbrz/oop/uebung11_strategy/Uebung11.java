@@ -16,7 +16,7 @@ public class Uebung11 {
         // ueber den Konstruktor injizieren.
         KursAnmeldeService klassenService = new KursAnmeldeService(
                 verwaltung,
-                new KlassenZulassung(Set.of("JAVA-1")));
+                new KlassenZulassung(Set.of("JAVA-1", "Graphentheorie")));
 
         ausgeben(klassenService.anmelden("Backend-Grundlagen", 2));
         ausgeben(klassenService.anmelden("Backend-Grundlagen", 4));
