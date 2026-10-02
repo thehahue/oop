@@ -15,6 +15,11 @@ public class StatistikListener implements KursAnmeldungListener {
         anmeldungenJeKurs.merge(event.kursbezeichnung(), 1, Integer::sum);
     }
 
+    @Override
+    public void anmeldungFehlerhaft(KursAnmeldungEvent event) {
+
+    }
+
     public int getAnzahlAnmeldungen(String kursbezeichnung) {
         return anmeldungenJeKurs.getOrDefault(kursbezeichnung, 0);
     }

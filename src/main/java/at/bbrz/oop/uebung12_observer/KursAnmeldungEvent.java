@@ -11,7 +11,10 @@ public record KursAnmeldungEvent(
         String schuelerName,
         int belegtePlaetze,
         int maxTeilnehmende,
-        Instant zeitpunkt) {
+        Instant zeitpunkt,
+        String klasse,
+        boolean anmeldungErfolgreich,
+        String anmeldeErgebnisNachricht) {
 
     public KursAnmeldungEvent {
         if (kursbezeichnung == null || kursbezeichnung.isBlank()) {
@@ -23,11 +26,21 @@ public record KursAnmeldungEvent(
         if (schuelerName == null || schuelerName.isBlank()) {
             throw new IllegalArgumentException("Der Schuelername darf nicht leer sein.");
         }
-        if (belegtePlaetze <= 0 || maxTeilnehmende < belegtePlaetze) {
+        if (belegtePlaetze < 0
+                || maxTeilnehmende <= 0
+                || maxTeilnehmende < belegtePlaetze) {
             throw new IllegalArgumentException("Die Platzangaben sind ungueltig.");
         }
         if (zeitpunkt == null) {
             throw new IllegalArgumentException("Der Zeitpunkt darf nicht null sein.");
+        }
+        if (klasse == null || klasse.isBlank()) {
+            throw new IllegalArgumentException("Die Klasse darf nicht leer sein.");
+        }
+        if (anmeldeErgebnisNachricht == null
+                || anmeldeErgebnisNachricht.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Die Ergebnisnachricht darf nicht leer sein.");
         }
     }
 }

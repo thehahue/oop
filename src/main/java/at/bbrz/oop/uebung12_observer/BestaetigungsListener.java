@@ -11,4 +11,9 @@ public class BestaetigungsListener implements KursAnmeldungListener {
                 event.schuelerName(),
                 event.kursbezeichnung());
     }
+
+    @Override
+    public void anmeldungFehlerhaft(KursAnmeldungEvent event) {
+
+    }
 }

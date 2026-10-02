@@ -20,6 +20,11 @@ public class AuditLogListener implements KursAnmeldungListener {
         System.out.println("AUDIT: " + eintrag);
     }
 
+    @Override
+    public void anmeldungFehlerhaft(KursAnmeldungEvent event) {
+
+    }
+
     public List<String> getEintraege() {
         return Collections.unmodifiableList(eintraege);
     }

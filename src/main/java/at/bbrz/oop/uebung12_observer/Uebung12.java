@@ -30,7 +30,8 @@ public class Uebung12 {
         ausgeben(service.anmelden("Backend-Grundlagen", 3));
         ausgeben(service.anmelden("Backend-Grundlagen", 4));
 
-        // Eine abgelehnte doppelte Anmeldung erzeugt bewusst kein Ereignis.
+        // Die doppelte Anmeldung erzeugt ein Fehlerereignis, aber keinen
+        // Wartelisteneintrag, weil der Kursplatz bereits belegt ist.
         ausgeben(service.anmelden("Backend-Grundlagen", 2));
 
         System.out.println();
@@ -41,7 +42,7 @@ public class Uebung12 {
 
         ausgeben(service.anmelden("Backend-Grundlagen-Abend", 5));
         ausgeben(service.anmelden("Backend-Grundlagen-Abend", 6));
-        service.anmelden("Backend-Grundlagen", 7);
+        ausgeben(service.anmelden("Backend-Grundlagen", 7));
         // Das Audit-Log bleibt unveraendert, die Statistik zaehlt weiterhin mit.
         System.out.println("Audit-Eintraege nach Entfernen des Listeners: "
                 + auditLog.getEintraege().size());

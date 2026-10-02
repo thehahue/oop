@@ -5,4 +5,5 @@ package at.bbrz.oop.uebung12_observer;
  */
 public interface KursAnmeldungListener {
     void anmeldungErfolgt(KursAnmeldungEvent event);
+    void anmeldungFehlerhaft(KursAnmeldungEvent event);
 }

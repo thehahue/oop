@@ -1,5 +1,6 @@
 package at.bbrz.oop.uebung12_observer;
 
+import at.bbrz.oop.uebung05_schulverwaltung.Schueler;
 import at.bbrz.oop.uebung05_schulverwaltung.Schulperson;
 import at.bbrz.oop.uebung06_kursverwaltung.Kursangebot;
 import at.bbrz.oop.uebung06_kursverwaltung.Schulverwaltung;
@@ -44,20 +45,28 @@ public class BeobachtbarerKursAnmeldeService {
         Anmeldeergebnis ergebnis =
                 anmeldeService.anmelden(kursbezeichnung, schuelerId);
 
+        KursAnmeldungEvent event = erstelleEvent(kursbezeichnung, schuelerId, ergebnis);
         if (ergebnis.erfolgreich()) {
-            KursAnmeldungEvent event = erstelleEvent(kursbezeichnung, schuelerId);
-            listenersInformieren(event);
+            listenersErfolgtInformieren(event);
+        } else {
+            listenersFehlerhaftInformieren(event);
         }
+
         return ergebnis;
     }
 
     private KursAnmeldungEvent erstelleEvent(
             String kursbezeichnung,
-            int schuelerId) {
+            int schuelerId,
+            Anmeldeergebnis anmeldeergebnis) {
         Kursangebot kursangebot =
                 schulverwaltung.getKursangebote().get(kursbezeichnung);
-        Schulperson schueler =
+        Schulperson schulperson =
                 schulverwaltung.getSchule().findePerson(schuelerId);
+        if (!(schulperson instanceof Schueler schueler)) {
+            throw new IllegalStateException(
+                    "Fuer das Anmeldeereignis wurde kein Schueler gefunden.");
+        }
 
         return new KursAnmeldungEvent(
                 kursbezeichnung,
@@ -65,14 +74,25 @@ public class BeobachtbarerKursAnmeldeService {
                 schueler.getName(),
                 kursangebot.getAnzahlTeilnehmende(),
                 kursangebot.getMaxTeilnehmende(),
-                Instant.now());
+                Instant.now(),
+                schueler.getKlasse(),
+                anmeldeergebnis.erfolgreich(),
+                anmeldeergebnis.nachricht());
     }
 
-    private void listenersInformieren(KursAnmeldungEvent event) {
+    private void listenersErfolgtInformieren(KursAnmeldungEvent event) {
         // Die Kopie erlaubt einem Listener, sich waehrend der Benachrichtigung
         // an- oder abzumelden, ohne die laufende Schleife zu beschaedigen.
         for (KursAnmeldungListener listener : List.copyOf(listeners)) {
             listener.anmeldungErfolgt(event);
+        }
+    }
+
+    private void listenersFehlerhaftInformieren(KursAnmeldungEvent event) {
+        // Die Kopie erlaubt einem Listener, sich waehrend der Benachrichtigung
+        // an- oder abzumelden, ohne die laufende Schleife zu beschaedigen.
+        for (KursAnmeldungListener listener : List.copyOf(listeners)) {
+            listener.anmeldungFehlerhaft(event);
         }
     }
 }

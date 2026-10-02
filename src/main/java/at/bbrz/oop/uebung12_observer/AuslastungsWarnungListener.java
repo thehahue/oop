@@ -29,4 +29,9 @@ public class AuslastungsWarnungListener implements KursAnmeldungListener {
                     event.maxTeilnehmende());
         }
     }
+
+    @Override
+    public void anmeldungFehlerhaft(KursAnmeldungEvent event) {
+
+    }
 }
