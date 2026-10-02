@@ -35,8 +35,17 @@ public class Uebung12 {
         System.out.println("Audit-Eintraege: " + auditLog.getEintraege().size());
         System.out.println("Statistik: " + statistik.getAnmeldungenJeKurs());
 
-        // Zusatzaufgaben:
-        // TODO 1: Entferne einen Listener und beobachte die naechste Anmeldung.
+        service.listenerEntfernen(auditLog);
+
+        ausgeben(service.anmelden("Backend-Grundlagen-Abend", 5));
+        ausgeben(service.anmelden("Backend-Grundlagen-Abend", 6));
+
+        // Das Audit-Log bleibt unveraendert, die Statistik zaehlt weiterhin mit.
+        System.out.println("Audit-Eintraege nach Entfernen des Listeners: "
+                + auditLog.getEintraege().size());
+        System.out.println("Statistik: " + statistik.getAnmeldungenJeKurs());
+
+        // Zusatzaufgabe:
         // TODO 2: Erstelle einen Listener fuer eine simulierte Warteliste.
     }
 
