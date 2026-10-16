@@ -23,6 +23,8 @@ public class WebnachrichtListener implements KursAnmeldungListener {
                 () -> webnachrichtVersenden(event),
                 "webnachricht-" + event.schuelerId());
         versandThread.start();
+
+        //webnachrichtVersenden(event);
     }
 
     private void webnachrichtVersenden(KursAnmeldungEvent event) {
