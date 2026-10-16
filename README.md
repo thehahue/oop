@@ -140,3 +140,19 @@ Lernziele:
 
 Starte die Übung über
 `at.bbrz.oop.uebung10_item_gallery.Uebung10`.
+
+## Übung 12 – Observer mit asynchroner Webnachricht
+
+Der `BeobachtbareKursAnmeldeService` informiert seine Listener über erfolgreiche
+und abgelehnte Kursanmeldungen. Der `WebnachrichtListener` startet für jedes
+Ereignis einen eigenen Thread und simuliert nach 500 Millisekunden den Versand
+einer JSON-Webnachricht durch eine Konsolenausgabe. Die übrigen Listener und
+der aufrufende Thread können währenddessen weiterarbeiten.
+
+Jackson erzeugt das JSON einschließlich aller Ereignisdaten. Die Ausgabe zeigt
+den Namen des Versandthreads und einen simulierten HTTP-POST; es findet kein
+Netzwerkzugriff statt. Die Reihenfolge der Webnachrichten kann variieren.
+Da die Versandthreads keine Daemon-Threads sind, läuft das Programm bis zum
+Abschluss aller simulierten Sendungen weiter.
+
+Starte die Übung über `at.bbrz.oop.uebung12_observer.Uebung12`.

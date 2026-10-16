@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Sammelt ein einfaches Audit-Log im Speicher.
+ * Protokolliert erfolgreiche und abgelehnte Anmeldungen im Speicher.
  */
 public class AuditLogListener implements KursAnmeldungListener {
     private final List<String> eintraege = new ArrayList<>();
@@ -22,7 +22,13 @@ public class AuditLogListener implements KursAnmeldungListener {
 
     @Override
     public void anmeldungFehlerhaft(KursAnmeldungEvent event) {
-
+        String eintrag = "%s: Anmeldung von Schueler %d zu '%s' abgelehnt: %s".formatted(
+                event.zeitpunkt(),
+                event.schuelerId(),
+                event.kursbezeichnung(),
+                event.anmeldeErgebnisNachricht());
+        eintraege.add(eintrag);
+        System.out.println("AUDIT: " + eintrag);
     }
 
     public List<String> getEintraege() {

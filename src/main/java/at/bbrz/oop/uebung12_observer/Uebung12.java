@@ -25,10 +25,13 @@ public class Uebung12 {
         service.listenerHinzufuegen(statistik);
         service.listenerHinzufuegen(new AuslastungsWarnungListener(0.66));
         service.listenerHinzufuegen(warteliste);
+        service.listenerHinzufuegen(new WebnachrichtListener());
 
         ausgeben(service.anmelden("Backend-Grundlagen", 2));
         ausgeben(service.anmelden("Backend-Grundlagen", 3));
         ausgeben(service.anmelden("Backend-Grundlagen", 4));
+
+        warteKurz();
 
         // Die doppelte Anmeldung erzeugt ein Fehlerereignis, aber keinen
         // Wartelisteneintrag, weil der Kursplatz bereits belegt ist.
@@ -50,16 +53,31 @@ public class Uebung12 {
         System.out.println("Aktive Wartelisten: "
                 + warteliste.getKurseMitWarteliste());
 
-        // Erweitern des Audit Logs auch mit den Fehlerhaften Events
-        // Schreibt noch 2 Fehlerhafte Anmeldungen dazu
-        // Ausgabe wie oben
+        // Nach dem erneuten Hinzufuegen werden auch abgelehnte Anmeldungen
+        // wieder im Audit-Log erfasst: doppelte Anmeldung und voller Kurs.
+        System.out.println("---------------------------------");
         service.listenerHinzufuegen(auditLog);
 
+        ausgeben(service.anmelden("Backend-Grundlagen", 2));
+        ausgeben(service.anmelden("Backend-Grundlagen", 7));
+
+        System.out.println("Audit-Eintraege: " + auditLog.getEintraege().size());
+        System.out.println("Statistik: " + statistik.getAnmeldungenJeKurs());
+        System.out.println("Aktive Wartelisten: "
+                + warteliste.getKurseMitWarteliste());
     }
 
     private static void ausgeben(Anmeldeergebnis ergebnis) {
         String status = ergebnis.erfolgreich() ? "ERFOLG" : "ABGELEHNT";
         System.out.println(status + ": " + ergebnis.nachricht());
         System.out.println();
+    }
+
+    private static void warteKurz() {
+        try {
+            Thread.sleep(600);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
