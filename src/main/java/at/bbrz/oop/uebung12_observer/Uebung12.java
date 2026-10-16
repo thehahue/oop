@@ -49,6 +49,12 @@ public class Uebung12 {
         System.out.println("Statistik: " + statistik.getAnmeldungenJeKurs());
         System.out.println("Aktive Wartelisten: "
                 + warteliste.getKurseMitWarteliste());
+
+        // Erweitern des Audit Logs auch mit den Fehlerhaften Events
+        // Schreibt noch 2 Fehlerhafte Anmeldungen dazu
+        // Ausgabe wie oben
+        service.listenerHinzufuegen(auditLog);
+
     }
 
     private static void ausgeben(Anmeldeergebnis ergebnis) {
