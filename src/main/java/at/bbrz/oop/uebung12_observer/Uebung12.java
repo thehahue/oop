@@ -25,6 +25,7 @@ public class Uebung12 {
         service.listenerHinzufuegen(statistik);
         service.listenerHinzufuegen(new AuslastungsWarnungListener(0.66));
         service.listenerHinzufuegen(warteliste);
+        service.listenerHinzufuegen(new FreieKurseListener(verwaltung));
         service.listenerHinzufuegen(new WebnachrichtListener());
 
         ausgeben(service.anmelden("Backend-Grundlagen", 2));
